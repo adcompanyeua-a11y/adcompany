@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageCircle } from "lucide-react";
+import { Calendar } from "lucide-react";
 import rocket from "@/assets/hero-rocket.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
 
@@ -68,9 +68,7 @@ const Hero = () => {
             >
               <Calendar className="mr-2 h-5 w-5" /> Agendar Consulta Gratuita
             </Button>
-            <Button asChild variant="outline" size="xl">
-              <a href="#contato"><MessageCircle className="mr-2 h-5 w-5" /> {t.hero.cta}</a>
-            </Button>
+
           </div>
           <div className="flex flex-wrap gap-6 pt-4 text-sm text-muted-foreground">
             <div><span className="text-brand-yellow font-bold text-2xl font-display">+200</span><br />{t.hero.stat1}</div>
