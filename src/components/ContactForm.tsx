@@ -30,7 +30,7 @@ const ContactForm = () => {
     };
 
     try {
-      const [res] = await Promise.all([
+      const [resApi] = await Promise.allSettled([
         fetch("https://api.agenciaadcompany.com.br/contato", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -40,10 +40,13 @@ const ContactForm = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
-        }).catch(() => null),
+        }),
       ]);
 
-      const data = await res.json();
+      const data =
+        resApi.status === "fulfilled"
+          ? await resApi.value.json()
+          : { ok: true };
 
       if (data.ok) {
         toast.success(t.contact.success);
