@@ -30,11 +30,17 @@ const ContactForm = () => {
     };
 
     try {
-      const res = await fetch("https://nextplaytv-n8n.8qr4sb.easypanel.host/webhook/contato-site", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(payload),
-      });
+      const [res] = await Promise.all([
+      fetch("https://api.agenciaadcompany.com.br/contato", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      }),
+      fetch("https://nextplaytv-n8n.8qr4sb.easypanel.host/webhook/contato-site", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+    ]);
 
       const data = await res.json();
 
