@@ -5,7 +5,6 @@ import Process from "@/components/Process";
 import VideoReviews from "@/components/VideoReviews";
 import Differentials from "@/components/Differentials";
 import ContactForm from "@/components/ContactForm";
-import Schedule from "@/components/Schedule";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -18,7 +17,6 @@ const Index = () => {
       <VideoReviews />
       <Differentials />
       <ContactForm />
-      <Schedule />
       <Footer />
     </main>
   );
