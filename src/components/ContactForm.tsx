@@ -19,54 +19,47 @@ const ContactForm = () => {
 
     const form = e.target as HTMLFormElement;
 
-   const onSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setLoading(true);
+    const payload = {
+      nome: (form.elements.namedItem("nome") as HTMLInputElement).value,
+      whatsapp: (form.elements.namedItem("whatsapp") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      empresa: (form.elements.namedItem("empresa") as HTMLInputElement).value,
+      segmento: segmento || "Não informado",
+      funcionarios: funcionarios || "Não informado",
+      faturamento: faturamento || "Não informado",
+    };
 
-  const form = e.target as HTMLFormElement;
+    try {
+      const [res] = await Promise.all([
+        fetch("https://api.agenciaadcompany.com.br/contato", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }),
+        fetch("https://nextplaytv-n8n.8qr4sb.easypanel.host/webhook/contato-site", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }).catch(() => null),
+      ]);
 
-  const payload = {
-    nome: (form.elements.namedItem("nome") as HTMLInputElement).value,
-    whatsapp: (form.elements.namedItem("whatsapp") as HTMLInputElement).value,
-    email: (form.elements.namedItem("email") as HTMLInputElement).value,
-    empresa: (form.elements.namedItem("empresa") as HTMLInputElement).value,
-    segmento: segmento || "Não informado",
-    funcionarios: funcionarios || "Não informado",
-    faturamento: faturamento || "Não informado",
-  };
+      const data = await res.json();
 
-  try {
-    // Dispara os 2 em paralelo — não bloqueia um pelo outro
-    const [res] = await Promise.all([
-      fetch("https://api.agenciaadcompany.com.br/contato", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      }),
-      fetch("https://nextplaytv-n8n.8qr4sb.easypanel.host/webhook/contato-site", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      }).catch(() => null), // se o n8n falhar, não quebra o form
-    ]);
-
-    const data = await res.json();
-
-    if (data.ok) {
-      toast.success(t.contact.success);
-      form.reset();
-      setSegmento("");
-      setFuncionarios("");
-      setFaturamento("");
-    } else {
-      toast.error(t.contact.errorSend);
+      if (data.ok) {
+        toast.success(t.contact.success);
+        form.reset();
+        setSegmento("");
+        setFuncionarios("");
+        setFaturamento("");
+      } else {
+        toast.error(t.contact.errorSend);
+      }
+    } catch {
+      toast.error(t.contact.errorConn);
+    } finally {
+      setLoading(false);
     }
-  } catch {
-    toast.error(t.contact.errorConn);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   const segs = t.contact.segments as Record<string, string>;
   const revs = t.contact.revenues as Record<string, string>;
