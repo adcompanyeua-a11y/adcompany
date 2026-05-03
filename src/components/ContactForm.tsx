@@ -41,7 +41,6 @@ const ContactForm = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
-      }).catch(() => null), // se o n8n falhar, não quebra o form
     ]);
 
     const data = await res.json();
