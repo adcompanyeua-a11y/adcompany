@@ -1,15 +1,55 @@
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { MessageCircle } from "lucide-react";
+import { Calendar, MessageCircle } from "lucide-react";
 import rocket from "@/assets/hero-rocket.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
 
+declare global {
+  interface Window {
+    Cal?: any;
+  }
+}
+
 const Hero = () => {
   const { t } = useLanguage();
+
+  useEffect(() => {
+    // Load Cal.com embed script
+    (function (C: any, A: string, L: string) {
+      let p = function (a: any, ar: any) { a.q.push(ar); };
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal;
+        let ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["initNamespace", namespace]);
+          } else p(cal, ar);
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, "https://adcompany-calcom.8qr4sb.easypanel.host/embed/embed.js", "init");
+
+    window.Cal("init", "45min", { origin: "https://adcompany-calcom.8qr4sb.easypanel.host" });
+    window.Cal.ns["45min"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+  }, []);
+
   return (
     <section className="relative overflow-hidden bg-hero pt-32 pb-20 md:pt-40 md:pb-32">
       <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-brand-yellow/20 blur-[120px] animate-glow" />
       <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-brand-royal/40 blur-[120px]" />
-
       <div className="container relative mx-auto grid lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-8">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.05]">
@@ -19,7 +59,16 @@ const Hero = () => {
             <strong className="text-brand-yellow">AD Company</strong> {t.hero.subtitle}
           </p>
           <div className="flex flex-wrap gap-4">
-            <Button asChild variant="hero" size="xl">
+            <Button
+              variant="hero"
+              size="xl"
+              data-cal-link="adcompany.eua-gmail.com/45min"
+              data-cal-namespace="45min"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+            >
+              <Calendar className="mr-2 h-5 w-5" /> Agendar Consulta Gratuita
+            </Button>
+            <Button asChild variant="outline" size="xl">
               <a href="#contato"><MessageCircle className="mr-2 h-5 w-5" /> {t.hero.cta}</a>
             </Button>
           </div>
@@ -29,7 +78,6 @@ const Hero = () => {
             <div><span className="text-brand-yellow font-bold text-2xl font-display">24/7</span><br />{t.hero.stat3}</div>
           </div>
         </div>
-
         <div className="relative animate-float">
           <div className="absolute inset-0 rounded-full bg-brand-yellow/30 blur-3xl" />
           <img
@@ -47,4 +95,5 @@ const Hero = () => {
     </section>
   );
 };
+
 export default Hero;
