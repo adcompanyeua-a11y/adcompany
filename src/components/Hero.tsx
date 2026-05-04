@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
-import rocket from "@/assets/hero-rocket.jpg";
+import rocket from "@/assets/hero-rocket.webp";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 declare global {
@@ -14,36 +14,43 @@ const Hero = () => {
   const { t } = useLanguage();
 
   useEffect(() => {
-    // Load Cal.com embed script
-    (function (C: any, A: string, L: string) {
-      let p = function (a: any, ar: any) { a.q.push(ar); };
-      let d = C.document;
-      C.Cal = C.Cal || function () {
-        let cal = C.Cal;
-        let ar = arguments;
-        if (!cal.loaded) {
-          cal.ns = {};
-          cal.q = cal.q || [];
-          d.head.appendChild(d.createElement("script")).src = A;
-          cal.loaded = true;
-        }
-        if (ar[0] === L) {
-          const api = function () { p(api, arguments); };
-          const namespace = ar[1];
-          api.q = api.q || [];
-          if (typeof namespace === "string") {
-            cal.ns[namespace] = cal.ns[namespace] || api;
-            p(cal.ns[namespace], ar);
-            p(cal, ["initNamespace", namespace]);
-          } else p(cal, ar);
-          return;
-        }
-        p(cal, ar);
-      };
-    })(window, "https://adcompany-calcom.8qr4sb.easypanel.host/embed/embed.js", "init");
+    const loadCal = () => {
+      (function (C: any, A: string, L: string) {
+        const p = function (a: any, ar: any) { a.q.push(ar); };
+        const d = C.document;
+        C.Cal = C.Cal || function () {
+          const cal = C.Cal;
+          const ar = arguments;
+          if (!cal.loaded) {
+            cal.ns = {};
+            cal.q = cal.q || [];
+            d.head.appendChild(d.createElement("script")).src = A;
+            cal.loaded = true;
+          }
+          if (ar[0] === L) {
+            const api = function () { p(api, arguments); };
+            const namespace = ar[1];
+            api.q = api.q || [];
+            if (typeof namespace === "string") {
+              cal.ns[namespace] = cal.ns[namespace] || api;
+              p(cal.ns[namespace], ar);
+              p(cal, ["initNamespace", namespace]);
+            } else p(cal, ar);
+            return;
+          }
+          p(cal, ar);
+        };
+      })(window, "https://adcompany-calcom.8qr4sb.easypanel.host/embed/embed.js", "init");
 
-    window.Cal("init", "45min", { origin: "https://adcompany-calcom.8qr4sb.easypanel.host" });
-    window.Cal.ns["45min"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+      window.Cal("init", "45min", { origin: "https://adcompany-calcom.8qr4sb.easypanel.host" });
+      window.Cal.ns["45min"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    };
+
+    if ("requestIdleCallback" in window) {
+      (window as any).requestIdleCallback(loadCal, { timeout: 3000 });
+    } else {
+      setTimeout(loadCal, 2000);
+    }
   }, []);
 
   return (
