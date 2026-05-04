@@ -31,7 +31,7 @@ const Obrigado = () => {
           Agendamento <span className="text-gradient-yellow">Confirmado!</span>
         </h1>
         <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-          Sua consulta foi agendada com sucesso. Você receberá um email de confirmação com o link do Google Meet.
+          Sua reunião foi agendada, em breve um de nossos atendentes irá entrar em contato via WhatsApp.
         </p>
         <Button variant="hero" size="xl" onClick={() => navigate("/")}>
           Voltar para o início
