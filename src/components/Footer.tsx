@@ -1,5 +1,5 @@
 import { Mail, Instagram, Facebook } from "lucide-react";
-import logo from "@/assets/ad-company-logo.png";
+import logo from "@/assets/ad-company-logo.webp";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const Footer = () => {
@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container mx-auto grid md:grid-cols-3 gap-10 mb-10">
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <img src={logo} alt="AD Company logo" className="h-14 w-14 object-contain" />
+            <img src={logo} alt="AD Company logo" className="h-14 w-14 object-contain" width={56} height={56} loading="lazy" decoding="async" />
             <span className="font-display text-xl font-black text-brand-yellow">AD COMPANY</span>
           </div>
           <p className="text-muted-foreground">{t.footer.tagline}</p>
