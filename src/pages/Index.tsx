@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 
 const Services = lazy(() => import("@/components/Services"));
+const PartnersMarquee = lazy(() => import("@/components/PartnersMarquee"));
 const Process = lazy(() => import("@/components/Process"));
 const VideoReviews = lazy(() => import("@/components/VideoReviews"));
 const Differentials = lazy(() => import("@/components/Differentials"));
@@ -16,6 +17,7 @@ const Index = () => {
       <Hero />
       <Suspense fallback={null}>
         <Services />
+        <PartnersMarquee />
         <Process />
         <VideoReviews />
         <Differentials />
