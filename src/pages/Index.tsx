@@ -15,7 +15,6 @@ const Index = () => {
       <Hero />
       <Suspense fallback={null}>
         <Services />
-        {/* <PartnersMarquee /> */}
         <Process />
         <VideoReviews />
         <Differentials />
