@@ -43,16 +43,16 @@ const PartnersMarquee = () => {
       </div>
 
       <div className="relative w-full overflow-hidden">
-        <div className="flex gap-16 w-max animate-marquee">
+        <div className="flex gap-8 w-max animate-marquee">
           {items.map((p, i) => (
             <div
               key={i}
-              className="flex items-center justify-center h-20 w-36 shrink-0"
+              className="flex items-center justify-center h-20 w-40 shrink-0 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 px-3 hover:bg-white/20 transition-all duration-300"
             >
               <img
                 src={p.src}
                 alt={p.alt}
-                className="max-h-20 max-w-full object-contain mix-blend-luminosity hover:mix-blend-normal transition-all duration-300 opacity-80 hover:opacity-100"
+                className="max-h-16 max-w-full object-contain"
                 loading="lazy"
                 decoding="async"
               />
