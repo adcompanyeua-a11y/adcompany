@@ -1,7 +1,6 @@
 import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-
 const Services = lazy(() => import("@/components/Services"));
 const PartnersMarquee = lazy(() => import("@/components/PartnersMarquee"));
 const Process = lazy(() => import("@/components/Process"));
@@ -9,7 +8,6 @@ const VideoReviews = lazy(() => import("@/components/VideoReviews"));
 const Differentials = lazy(() => import("@/components/Differentials"));
 const ContactForm = lazy(() => import("@/components/ContactForm"));
 const Footer = lazy(() => import("@/components/Footer"));
-
 const Index = () => {
   return (
     <main className="min-h-screen bg-background">
@@ -17,7 +15,7 @@ const Index = () => {
       <Hero />
       <Suspense fallback={null}>
         <Services />
-        <PartnersMarquee />
+        {/* <PartnersMarquee /> */}
         <Process />
         <VideoReviews />
         <Differentials />
@@ -27,5 +25,4 @@ const Index = () => {
     </main>
   );
 };
-
 export default Index;
