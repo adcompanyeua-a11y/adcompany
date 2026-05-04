@@ -30,20 +30,29 @@ const PartnersMarquee = () => {
   const items = [...partners, ...partners];
 
   return (
-    <section className="py-12 bg-brand-navy border-t border-brand-yellow/10 overflow-hidden">
-      <div className="container mx-auto mb-6 text-center">
+    <section className="py-12 bg-brand-navy border-t border-brand-yellow/10 overflow-hidden relative">
+      {/* Luz amarela de fundo */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="w-[600px] h-40 rounded-full bg-brand-yellow/10 blur-[80px]" />
+      </div>
+
+      <div className="container mx-auto mb-8 text-center relative">
         <h3 className="text-lg md:text-xl font-bold text-brand-yellow tracking-wide">
           {t.partners.title}
         </h3>
       </div>
+
       <div className="relative w-full overflow-hidden">
-        <div className="flex gap-12 w-max animate-marquee">
+        <div className="flex gap-16 w-max animate-marquee">
           {items.map((p, i) => (
-            <div key={i} className="flex items-center justify-center h-24 w-40 shrink-0">
+            <div
+              key={i}
+              className="flex items-center justify-center h-20 w-36 shrink-0"
+            >
               <img
                 src={p.src}
                 alt={p.alt}
-                className="max-h-24 max-w-full object-contain"
+                className="max-h-20 max-w-full object-contain mix-blend-luminosity hover:mix-blend-normal transition-all duration-300 opacity-80 hover:opacity-100"
                 loading="lazy"
                 decoding="async"
               />
