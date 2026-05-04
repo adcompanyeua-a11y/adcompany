@@ -27,7 +27,6 @@ const partners = [
 
 const PartnersMarquee = () => {
   const { t } = useLanguage();
-  const items = [...partners, ...partners];
 
   return (
     <section className="py-12 bg-brand-navy border-t border-brand-yellow/10 overflow-hidden relative">
@@ -42,17 +41,17 @@ const PartnersMarquee = () => {
         </h3>
       </div>
 
-      <div className="relative w-full overflow-hidden">
-        <div className="flex gap-8 w-max animate-marquee">
-          {items.map((p, i) => (
+      <div className="container mx-auto relative">
+        <div className="flex flex-wrap justify-center gap-6">
+          {partners.map((p, i) => (
             <div
               key={i}
-              className="flex items-center justify-center h-20 w-40 shrink-0 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 px-3 hover:bg-white/20 transition-all duration-300"
+              className="flex items-center justify-center h-32 w-56 shrink-0 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 px-4 hover:bg-white/20 transition-all duration-300"
             >
               <img
                 src={p.src}
                 alt={p.alt}
-                className="max-h-16 max-w-full object-contain"
+                className="max-h-24 max-w-full object-contain"
                 loading="lazy"
                 decoding="async"
               />
