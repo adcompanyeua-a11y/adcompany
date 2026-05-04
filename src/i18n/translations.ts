@@ -80,8 +80,8 @@ export const translations = {
       errorSend: "Erro ao enviar. Tente novamente em instantes.",
       errorConn: "Erro de conexão. Verifique sua internet e tente novamente.",
       privacy: "*Ao enviar você concorda com nossa Política de Privacidade.",
-      segments: { educacao: "Educação", servico: "Serviço", ecommerce: "E-commerce", franquia: "Franquia", saude: "Saúde", beleza: "Beleza e estética", construcao: "Construção civil", financas: "Finanças", varejo: "Varejo", imobiliaria: "Imobiliária", alimentacao: "Alimentação", outros: "Outros" },
-      revenues: { "abaixo-70k": "Abaixo de R$ 70 mil", "70k-150k": "Entre R$ 70 e 150 mil", "150k-500k": "Entre R$ 150 e 500 mil", "acima-500k": "Acima de R$ 500 mil" },
+      segments: { "house-cleaning": "House Cleaning", construcao: "Construção", beleza: "Beleza e estética", imobiliaria: "Imobiliária / Corretor", outros: "Outros" },
+      revenues: { "abaixo-3k": "Abaixo de US$ 3.000", "3k-8k": "Entre US$ 3.000 e 8.000", "8k-15k": "Entre US$ 8.000 e 15.000", "acima-15k": "Acima de US$ 15.000" },
     },
     footer: {
       tagline: "Marketing digital estratégico para negócios que querem crescer com previsibilidade.",
@@ -169,8 +169,8 @@ export const translations = {
       errorSend: "Error al enviar. Inténtalo de nuevo en unos instantes.",
       errorConn: "Error de conexión. Verifica tu internet e inténtalo nuevamente.",
       privacy: "*Al enviar aceptas nuestra Política de Privacidad.",
-      segments: { educacao: "Educación", servico: "Servicio", ecommerce: "E-commerce", franquia: "Franquicia", saude: "Salud", beleza: "Belleza y estética", construcao: "Construcción civil", financas: "Finanzas", varejo: "Retail", imobiliaria: "Inmobiliaria", alimentacao: "Alimentación", outros: "Otros" },
-      revenues: { "abaixo-70k": "Menos de US$ 15 mil", "70k-150k": "Entre US$ 15 y 30 mil", "150k-500k": "Entre US$ 30 y 100 mil", "acima-500k": "Más de US$ 100 mil" },
+      segments: { "house-cleaning": "House Cleaning", construcao: "Construcción", beleza: "Belleza y estética", imobiliaria: "Inmobiliaria / Corredor", outros: "Otros" },
+      revenues: { "abaixo-3k": "Menos de US$ 3.000", "3k-8k": "Entre US$ 3.000 y 8.000", "8k-15k": "Entre US$ 8.000 y 15.000", "acima-15k": "Más de US$ 15.000" },
     },
     footer: {
       tagline: "Marketing digital estratégico para negocios que quieren crecer con previsibilidad.",
