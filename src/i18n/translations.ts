@@ -83,6 +83,7 @@ export const translations = {
       segments: { "house-cleaning": "House Cleaning", construcao: "Construção", beleza: "Beleza e estética", imobiliaria: "Imobiliária / Corretor", outros: "Outros" },
       revenues: { "abaixo-3k": "Abaixo de US$ 3.000", "3k-8k": "Entre US$ 3.000 e 8.000", "8k-15k": "Entre US$ 8.000 e 15.000", "acima-15k": "Acima de US$ 15.000" },
     },
+    partners: { title: "Algumas empresas parceiras" },
     footer: {
       tagline: "Marketing digital estratégico para negócios que querem crescer com previsibilidade.",
       contact: "Contato",
@@ -172,6 +173,7 @@ export const translations = {
       segments: { "house-cleaning": "House Cleaning", construcao: "Construcción", beleza: "Belleza y estética", imobiliaria: "Inmobiliaria / Corredor", outros: "Otros" },
       revenues: { "abaixo-3k": "Menos de US$ 3.000", "3k-8k": "Entre US$ 3.000 y 8.000", "8k-15k": "Entre US$ 8.000 y 15.000", "acima-15k": "Más de US$ 15.000" },
     },
+    partners: { title: "Algunas empresas socias" },
     footer: {
       tagline: "Marketing digital estratégico para negocios que quieren crecer con previsibilidad.",
       contact: "Contacto",
