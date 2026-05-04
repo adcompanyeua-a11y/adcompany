@@ -1,4 +1,5 @@
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useEffect, useRef, useState } from "react";
 import premium from "@/assets/partners/premium.png";
 import broom from "@/assets/partners/broom.png";
 import beautyByJanete from "@/assets/partners/Beauty byjanete.png";
@@ -25,8 +26,58 @@ const partners = [
   { src: souza,          alt: "Souza Construction" },
 ];
 
+const CARD_WIDTH = 280; // px
+const GAP = 24; // px
+const STEP = CARD_WIDTH + GAP;
+
 const PartnersMarquee = () => {
   const { t } = useLanguage();
+  const [offset, setOffset] = useState(0);
+  const indexRef = useRef(0);
+  const animRef = useRef<number | null>(null);
+  const pauseRef = useRef(false);
+
+  useEffect(() => {
+    let start: number | null = null;
+    const duration = 600; // ms per slide
+    const interval = 2800; // ms between slides
+
+    const animateSlide = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = progress < 0.5
+        ? 2 * progress * progress
+        : -1 + (4 - 2 * progress) * progress;
+
+      const from = indexRef.current * STEP;
+      const to = (indexRef.current + 1) * STEP;
+      setOffset(from + (to - from) * eased);
+
+      if (progress < 1) {
+        animRef.current = requestAnimationFrame(animateSlide);
+      } else {
+        indexRef.current = (indexRef.current + 1) % partners.length;
+        // Reset silencioso quando chega no fim
+        if (indexRef.current === 0) setOffset(0);
+        start = null;
+        animRef.current = null;
+      }
+    };
+
+    const tick = setInterval(() => {
+      if (!pauseRef.current && !animRef.current) {
+        animRef.current = requestAnimationFrame(animateSlide);
+      }
+    }, interval);
+
+    return () => {
+      clearInterval(tick);
+      if (animRef.current) cancelAnimationFrame(animRef.current);
+    };
+  }, []);
+
+  // Duplica para o loop visual funcionar suavemente
+  const items = [...partners, ...partners];
 
   return (
     <section className="py-12 bg-brand-navy border-t border-brand-yellow/10 overflow-hidden relative">
@@ -41,12 +92,33 @@ const PartnersMarquee = () => {
         </h3>
       </div>
 
-      <div className="container mx-auto relative">
-        <div className="flex flex-wrap justify-center gap-6">
-          {partners.map((p, i) => (
+      {/* Wrapper com máscara nas bordas */}
+      <div
+        className="relative mx-auto overflow-hidden"
+        style={{ width: `${4 * CARD_WIDTH + 3 * GAP}px`, maxWidth: "100%" }}
+        onMouseEnter={() => { pauseRef.current = true; }}
+        onMouseLeave={() => { pauseRef.current = false; }}
+      >
+        {/* Gradiente esquerda */}
+        <div className="absolute left-0 top-0 h-full w-16 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to right, var(--brand-navy, #0a1628), transparent)" }} />
+        {/* Gradiente direita */}
+        <div className="absolute right-0 top-0 h-full w-16 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to left, var(--brand-navy, #0a1628), transparent)" }} />
+
+        <div
+          className="flex"
+          style={{
+            gap: `${GAP}px`,
+            transform: `translateX(-${offset}px)`,
+            transition: animRef.current ? "none" : undefined,
+          }}
+        >
+          {items.map((p, i) => (
             <div
               key={i}
-              className="flex items-center justify-center h-32 w-56 shrink-0 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 px-4 hover:bg-white/20 transition-all duration-300"
+              className="flex items-center justify-center shrink-0 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 px-4 hover:bg-white/20 transition-colors duration-300"
+              style={{ width: `${CARD_WIDTH}px`, height: "128px" }}
             >
               <img
                 src={p.src}
