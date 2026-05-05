@@ -1,16 +1,16 @@
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useEffect, useRef, useState } from "react";
-import premium from "@/assets/partners/premium.png";
-import broom from "@/assets/partners/broom.png";
-import beautyByJanete from "@/assets/partners/Beauty byjanete.png";
-import borges from "@/assets/partners/Borges Cleaning services.png";
-import cariocas from "@/assets/partners/Carioca's Cleaning.png";
-import excellence from "@/assets/partners/Excellence cleaning.png";
-import medeiros from "@/assets/partners/Medeiros Flooring.png";
-import prime from "@/assets/partners/Prime cleaning.png";
-import servCleaning from "@/assets/partners/servcleaning.jpg";
-import smilean from "@/assets/partners/Smilean cleaning.png";
-import souza from "@/assets/partners/Souza construction.png";
+import premium from "@/assets/partners/premium.webp";
+import broom from "@/assets/partners/broom.webp";
+import beautyByJanete from "@/assets/partners/Beauty byjanete.webp";
+import borges from "@/assets/partners/Borges Cleaning services.webp";
+import cariocas from "@/assets/partners/Carioca's Cleaning.webp";
+import excellence from "@/assets/partners/Excellence cleaning.webp";
+import medeiros from "@/assets/partners/Medeiros Flooring.webp";
+import prime from "@/assets/partners/Prime cleaning.webp";
+import servCleaning from "@/assets/partners/servcleaning.webp";
+import smilean from "@/assets/partners/Smilean cleaning.webp";
+import souza from "@/assets/partners/Souza construction.webp";
 
 const partners = [
   { src: premium,        alt: "Premium Home Service Contractors LLC" },
