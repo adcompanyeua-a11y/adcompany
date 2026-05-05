@@ -2,15 +2,15 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { useEffect, useRef, useState } from "react";
 import premium from "@/assets/partners/premium.webp";
 import broom from "@/assets/partners/broom.webp";
-import beautyByJanete from "@/assets/partners/Beauty byjanete.webp";
-import borges from "@/assets/partners/Borges Cleaning services.webp";
-import cariocas from "@/assets/partners/Carioca's Cleaning.webp";
-import excellence from "@/assets/partners/Excellence cleaning.webp";
-import medeiros from "@/assets/partners/Medeiros Flooring.webp";
-import prime from "@/assets/partners/Prime cleaning.webp";
+import beautyByJanete from "@/assets/partners/beauty-by-janete.webp";
+import borges from "@/assets/partners/borges.webp";
+import cariocas from "@/assets/partners/cariocas.webp";
+import excellence from "@/assets/partners/excellence.webp";
+import medeiros from "@/assets/partners/medeiros.webp";
+import prime from "@/assets/partners/prime.webp";
 import servCleaning from "@/assets/partners/servcleaning.webp";
-import smilean from "@/assets/partners/Smilean cleaning.webp";
-import souza from "@/assets/partners/Souza construction.webp";
+import smilean from "@/assets/partners/smilean.webp";
+import souza from "@/assets/partners/souza.webp";
 
 const partners = [
   { src: premium,        alt: "Premium Home Service Contractors LLC" },
