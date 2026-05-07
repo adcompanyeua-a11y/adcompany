@@ -14,7 +14,6 @@ const Hero = () => {
   const { t } = useLanguage();
 
   useEffect(() => {
-    // Load Cal.com embed script
     (function (C: any, A: string, L: string) {
       let p = function (a: any, ar: any) { a.q.push(ar); };
       let d = C.document;
@@ -41,7 +40,6 @@ const Hero = () => {
         p(cal, ar);
       };
     })(window, "https://adcompany-calcom.8qr4sb.easypanel.host/embed/embed.js", "init");
-
     window.Cal("init", "45min", { origin: "https://adcompany-calcom.8qr4sb.easypanel.host" });
     window.Cal.ns["45min"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
   }, []);
@@ -52,6 +50,13 @@ const Hero = () => {
       <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-brand-royal/40 blur-[120px]" />
       <div className="container relative mx-auto grid lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-8">
+
+          {/* Badge Especializado */}
+          <div className="inline-flex flex-col">
+            <span className="text-brand-yellow font-black text-lg uppercase tracking-widest">✦ Especializado</span>
+            <span className="text-muted-foreground text-sm">em negócios locais</span>
+          </div>
+
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.05]">
             {t.hero.titleStart}<span className="text-gradient-yellow">{t.hero.titleHighlight}</span>{t.hero.titleEnd}
           </h1>
@@ -66,9 +71,8 @@ const Hero = () => {
               data-cal-namespace="45min"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
             >
-              <Calendar className="mr-2 h-5 w-5" /> Agendar Consulta Gratuita
+              <Calendar className="mr-2 h-5 w-5" /> AGENDAR REUNIÃO AGORA
             </Button>
-
           </div>
           <div className="flex flex-wrap gap-6 pt-4 text-sm text-muted-foreground">
             <div><span className="text-brand-yellow font-bold text-2xl font-display">+200</span><br />{t.hero.stat1}</div>
