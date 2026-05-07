@@ -17,6 +17,7 @@ const Index = () => {
         <Services />
         <VideoReviews />
         <PartnersMarquee />
+        <Process />
         <Differentials />
         <ContactForm />
         <Footer />
