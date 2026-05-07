@@ -79,7 +79,6 @@ const Hero = () => {
           </div>
           <div className="flex flex-wrap gap-6 pt-4 text-sm text-muted-foreground">
             <div><span className="text-brand-yellow font-bold text-2xl font-display">+200</span><br />{t.hero.stat1}</div>
-            <div><span className="text-brand-yellow font-bold text-2xl font-display">5x</span><br />{t.hero.stat2}</div>
             <div><span className="text-brand-yellow font-bold text-2xl font-display">24/7</span><br />{t.hero.stat3}</div>
           </div>
         </div>
