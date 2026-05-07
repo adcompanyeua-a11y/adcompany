@@ -73,7 +73,7 @@ const Hero = () => {
               data-cal-namespace="45min"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
             >
-              <Calendar className="mr-2 h-5 w-5" /> Agendar Consulta Gratuita
+              <Calendar className="mr-2 h-5 w-5" /> AGENDAR REUNIÃO AGORA
             </Button>
 
           </div>
