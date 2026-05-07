@@ -16,7 +16,7 @@ export const translations = {
       subtitle: "é especialista em gerar leads qualificados através de Google Ads, Meta Ads e gestão estratégica de tráfego. Transformamos cliques em clientes reais para o seu negócio crescer de forma previsível.",
       cta: "Solicite uma Consulta Gratuita",
       stat1: "Clientes atendidos",
-      stat2: "ROI médio",
+      stat2: "Em negócios locais",
       stat3: "Suporte dedicado",
     },
     services: {
