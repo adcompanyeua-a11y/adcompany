@@ -1,4 +1,6 @@
 import { useLanguage } from "@/i18n/LanguageContext";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "lucide-react";
 
 const videos = [
   {
@@ -56,6 +58,18 @@ const VideoReviews = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <Button
+            variant="hero"
+            size="xl"
+            data-cal-link="adcompany.eua-gmail.com/45min"
+            data-cal-namespace="45min"
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+          >
+            <Calendar className="mr-2 h-5 w-5" /> AGENDAR REUNIÃO AGORA
+          </Button>
         </div>
       </div>
     </section>
