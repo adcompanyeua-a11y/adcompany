@@ -15,9 +15,9 @@ const Index = () => {
       <Hero />
       <Suspense fallback={null}>
         <Services />
+        <VideoReviews />
         <PartnersMarquee />
         <Process />
-        <VideoReviews />
         <Differentials />
         <ContactForm />
         <Footer />
