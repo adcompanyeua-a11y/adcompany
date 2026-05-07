@@ -13,7 +13,7 @@ export const translations = {
       titleStart: "Domine o ",
       titleHighlight: "Marketing Digital",
       titleEnd: " e Conquiste Mais Clientes para o Seu Negócio!",
-      subtitle: "é especialista em empresas Brasileiras nos EUA, onde captamos leads qualificados através de Google Ads ou LSA, Meta Ads, com gestão estratégica de tráfego.",
+      subtitle: "é especialista em empresas Brasileiras nos EUA, onde captamos leads qualificados através do Google Ads ou LSA, Meta Ads, com gestão estratégica de tráfego pago e orgânico.",
       cta: "Solicite uma Consulta Gratuita",
       stat1: "Clientes atendidos",
       stat2: "Em negócios locais",
