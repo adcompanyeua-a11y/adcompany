@@ -13,7 +13,7 @@ export const translations = {
       titleStart: "Domine o ",
       titleHighlight: "Marketing Digital",
       titleEnd: " e Conquiste Mais Clientes para o Seu Negócio!",
-      subtitle: "é especialista em gerar leads qualificados através de Google Ads, Meta Ads e gestão estratégica de tráfego. Transformamos cliques em clientes reais para o seu negócio crescer de forma previsível.",
+      subtitle: "é especialista em gerar leads qualificados através de Google Ads, Meta Ads e gestão estratégica de tráfego. Especializada em empresas Brasileiras que atuam nos EUA.",
       cta: "Solicite uma Consulta Gratuita",
       stat1: "Clientes atendidos",
       stat2: "Em negócios locais",
