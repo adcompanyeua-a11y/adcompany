@@ -6,6 +6,17 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
+// ✅ Validação anti-bot
+const isValidLead = (nome: string, whatsapp: string): boolean => {
+  if (!nome || !whatsapp) return false;
+  if (!nome.includes(' ')) return false;
+  if (/^[A-Z][a-z]+([A-Z][a-z]+)+$/.test(nome)) return false;
+  if (nome.length > 40) return false;
+  if (!/^[\d\s\+\-\(\)]+$/.test(whatsapp)) return false;
+  if (whatsapp.replace(/\D/g, '').length < 10) return false;
+  return true;
+};
+
 const ContactForm = () => {
   const { t } = useLanguage();
   const [loading, setLoading] = useState(false);
@@ -19,9 +30,19 @@ const ContactForm = () => {
 
     const form = e.target as HTMLFormElement;
 
+    const nomeValue = (form.elements.namedItem("nome") as HTMLInputElement).value;
+    const whatsappValue = (form.elements.namedItem("whatsapp") as HTMLInputElement).value;
+
+    // ✅ Bloqueia bot antes de enviar qualquer requisição
+    if (!isValidLead(nomeValue, whatsappValue)) {
+      toast.error("Por favor, preencha nome completo e WhatsApp válido.");
+      setLoading(false);
+      return;
+    }
+
     const payload = {
-      nome: (form.elements.namedItem("nome") as HTMLInputElement).value,
-      whatsapp: (form.elements.namedItem("whatsapp") as HTMLInputElement).value,
+      nome: nomeValue,
+      whatsapp: whatsappValue,
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       empresa: (form.elements.namedItem("empresa") as HTMLInputElement).value,
       segmento: segmento || "Não informado",
