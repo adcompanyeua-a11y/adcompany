@@ -33,9 +33,28 @@ const ContactForm = () => {
     const nomeValue = (form.elements.namedItem("nome") as HTMLInputElement).value;
     const whatsappValue = (form.elements.namedItem("whatsapp") as HTMLInputElement).value;
 
-    // ✅ Bloqueia bot antes de enviar qualquer requisição
+    // ✅ Bloqueia bot
     if (!isValidLead(nomeValue, whatsappValue)) {
       toast.error("Por favor, preencha nome completo e WhatsApp válido.");
+      setLoading(false);
+      return;
+    }
+
+    // ✅ Selects obrigatórios
+    if (!segmento) {
+      toast.error("Por favor, selecione o seu segmento.");
+      setLoading(false);
+      return;
+    }
+
+    if (!funcionarios) {
+      toast.error("Por favor, selecione o número de funcionários.");
+      setLoading(false);
+      return;
+    }
+
+    if (!faturamento) {
+      toast.error("Por favor, selecione o faturamento médio mensal.");
       setLoading(false);
       return;
     }
@@ -45,9 +64,9 @@ const ContactForm = () => {
       whatsapp: whatsappValue,
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       empresa: (form.elements.namedItem("empresa") as HTMLInputElement).value,
-      segmento: segmento || "Não informado",
-      funcionarios: funcionarios || "Não informado",
-      faturamento: faturamento || "Não informado",
+      segmento,
+      funcionarios,
+      faturamento,
     };
 
     try {
@@ -124,9 +143,14 @@ const ContactForm = () => {
             </div>
 
             <div>
-              <Label>{t.contact.segment}</Label>
+              <Label>
+                {t.contact.segment}
+                <span className="text-red-500 ml-1">*</span>
+              </Label>
               <Select value={segmento} onValueChange={setSegmento}>
-                <SelectTrigger><SelectValue placeholder={t.contact.segment} /></SelectTrigger>
+                <SelectTrigger className={!segmento ? "border-muted" : ""}>
+                  <SelectValue placeholder={t.contact.segment} />
+                </SelectTrigger>
                 <SelectContent>
                   {Object.entries(segs).map(([k, v]) => (
                     <SelectItem key={k} value={k}>{v}</SelectItem>
@@ -136,9 +160,14 @@ const ContactForm = () => {
             </div>
 
             <div>
-              <Label>{t.contact.employees}</Label>
+              <Label>
+                {t.contact.employees}
+                <span className="text-red-500 ml-1">*</span>
+              </Label>
               <Select value={funcionarios} onValueChange={setFuncionarios}>
-                <SelectTrigger><SelectValue placeholder={t.contact.employees} /></SelectTrigger>
+                <SelectTrigger className={!funcionarios ? "border-muted" : ""}>
+                  <SelectValue placeholder={t.contact.employees} />
+                </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="00-01">00 - 01</SelectItem>
                   <SelectItem value="02-10">02 - 10</SelectItem>
@@ -151,9 +180,14 @@ const ContactForm = () => {
             </div>
 
             <div>
-              <Label>{t.contact.revenue}</Label>
+              <Label>
+                {t.contact.revenue}
+                <span className="text-red-500 ml-1">*</span>
+              </Label>
               <Select value={faturamento} onValueChange={setFaturamento}>
-                <SelectTrigger><SelectValue placeholder={t.contact.revenue} /></SelectTrigger>
+                <SelectTrigger className={!faturamento ? "border-muted" : ""}>
+                  <SelectValue placeholder={t.contact.revenue} />
+                </SelectTrigger>
                 <SelectContent>
                   {Object.entries(revs).map(([k, v]) => (
                     <SelectItem key={k} value={k}>{v}</SelectItem>
