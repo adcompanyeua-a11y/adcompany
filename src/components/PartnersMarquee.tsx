@@ -131,7 +131,7 @@ const PartnersMarquee = () => {
             <div
               key={i}
               className="flex items-center justify-center shrink-0 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 px-4 hover:bg-white/20 transition-colors duration-300"
-              style={{ width: `${CARD_WIDTH}px`, height: "128px" }}
+              style={{ width: `${CARD_WIDTH}px`, height: isMobile ? "96px" : "128px" }}
             >
               <img
                 src={p.src}
