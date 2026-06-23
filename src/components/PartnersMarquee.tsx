@@ -108,7 +108,7 @@ const PartnersMarquee = () => {
       {/* Wrapper com máscara nas bordas */}
       <div
         className="relative mx-auto overflow-hidden"
-        style={{ width: `${4 * CARD_WIDTH + 3 * GAP}px`, maxWidth: "100%" }}
+        style={{ width: `${VISIBLE * CARD_WIDTH + (VISIBLE - 1) * GAP}px`, maxWidth: "100%" }}
         onMouseEnter={() => { pauseRef.current = true; }}
         onMouseLeave={() => { pauseRef.current = false; }}
       >
