@@ -26,16 +26,29 @@ const partners = [
   { src: souza,          alt: "Souza Construction" },
 ];
 
-const CARD_WIDTH = 280; // px
-const GAP = 24; // px
-const STEP = CARD_WIDTH + GAP;
+const DESKTOP_CARD_WIDTH = 280;
+const MOBILE_CARD_WIDTH = 180;
+const GAP = 24;
 
 const PartnersMarquee = () => {
   const { t } = useLanguage();
+  const [isMobile, setIsMobile] = useState(false);
   const [offset, setOffset] = useState(0);
   const indexRef = useRef(0);
   const animRef = useRef<number | null>(null);
   const pauseRef = useRef(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const apply = () => setIsMobile(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
+  const CARD_WIDTH = isMobile ? MOBILE_CARD_WIDTH : DESKTOP_CARD_WIDTH;
+  const STEP = CARD_WIDTH + GAP;
+  const VISIBLE = isMobile ? 2 : 4;
 
   useEffect(() => {
     let start: number | null = null;
