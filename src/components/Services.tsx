@@ -15,25 +15,25 @@ const icons = [Target, Megaphone, Search, Users, GoogleIcon, Globe];
 const Services = () => {
   const { t } = useLanguage();
   return (
-    <section id="servicos" className="py-24 bg-brand-navy relative">
+    <section id="servicos" className="py-16 md:py-24 bg-brand-navy relative">
       <div className="container mx-auto">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-10 md:mb-16">
           <span className="inline-block px-4 py-1 rounded-full bg-brand-yellow/10 text-brand-yellow text-sm font-bold tracking-widest mb-4">{t.services.tag}</span>
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 md:mb-6">
             {t.services.titleStart}<span className="text-gradient-yellow">{t.services.titleHighlight}</span>
           </h2>
-          <p className="text-muted-foreground text-lg">{t.services.subtitle}</p>
+          <p className="text-muted-foreground text-base md:text-lg">{t.services.subtitle}</p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {t.services.items.map((item, i) => {
             const Icon = icons[i];
             return (
-              <div key={item.title} className="group relative p-8 rounded-2xl bg-card-grad border border-border hover:border-brand-yellow/50 transition-smooth shadow-card-soft hover:-translate-y-1">
-                <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl mb-5 shadow-yellow-soft group-hover:scale-110 transition-smooth bg-yellow-grad text-brand-navy">
-                  <Icon className="h-7 w-7" strokeWidth={2.5} />
+              <div key={item.title} className="group relative p-6 md:p-8 rounded-2xl bg-card-grad border border-border hover:border-brand-yellow/50 transition-smooth shadow-card-soft hover:-translate-y-1">
+                <div className="inline-flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-xl mb-4 md:mb-5 shadow-yellow-soft group-hover:scale-110 transition-smooth bg-yellow-grad text-brand-navy">
+                  <Icon className="h-6 w-6 md:h-7 md:w-7" strokeWidth={2.5} />
                 </div>
-                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{item.text}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">{item.title}</h3>
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{item.text}</p>
               </div>
             );
           })}

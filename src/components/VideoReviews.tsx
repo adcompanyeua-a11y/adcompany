@@ -24,24 +24,24 @@ const VideoReviews = () => {
       : "Historias reales de quienes confiaron en AD Company para escalar su negocio.";
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-background relative overflow-hidden">
       <div className="container relative mx-auto">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
+        <div className="text-center mb-10 md:mb-16 max-w-3xl mx-auto">
           <span className="inline-block px-4 py-1 rounded-full bg-brand-yellow/10 text-brand-yellow text-sm font-bold tracking-widest mb-4">
             {tag}
           </span>
-          <h2 className="text-4xl md:text-5xl font-black mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4">
             {titleStart}
             <span className="text-gradient-yellow">{titleHighlight}</span>
           </h2>
-          <p className="text-muted-foreground text-lg">{subtitle}</p>
+          <p className="text-muted-foreground text-base md:text-lg">{subtitle}</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8">
+        <div className="grid sm:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
           {videos.map((v) => (
             <div
               key={v.name}
-              className="relative rounded-2xl overflow-hidden border border-brand-yellow/20 bg-brand-navy/60 backdrop-blur hover:border-brand-yellow transition-smooth group w-full max-w-[500px]"
+              className="relative rounded-2xl overflow-hidden border border-brand-yellow/20 bg-brand-navy/60 backdrop-blur hover:border-brand-yellow transition-smooth group"
             >
               <div className="w-full aspect-square bg-black">
                 <iframe
@@ -60,10 +60,11 @@ const VideoReviews = () => {
           ))}
         </div>
 
-        <div className="mt-12 flex justify-center">
+        <div className="mt-10 md:mt-12 flex justify-center px-4">
           <Button
             variant="hero"
             size="xl"
+            className="w-full sm:w-auto"
             data-cal-link="adcompany.eua-gmail.com/45min"
             data-cal-namespace="45min"
             data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'

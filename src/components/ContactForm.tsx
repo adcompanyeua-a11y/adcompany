@@ -108,21 +108,21 @@ const ContactForm = () => {
   const revs = t.contact.revenues as Record<string, string>;
 
   return (
-    <section id="contato" className="py-24 bg-royal relative overflow-hidden">
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-brand-yellow/20 blur-[120px]" />
+    <section id="contato" className="py-16 md:py-24 bg-royal relative overflow-hidden">
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-64 w-64 md:h-96 md:w-96 rounded-full bg-brand-yellow/20 blur-[80px] md:blur-[120px]" />
       <div className="container relative mx-auto max-w-5xl">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="text-center lg:text-left">
             <span className="inline-block px-4 py-1 rounded-full bg-brand-yellow/10 text-brand-yellow text-sm font-bold tracking-widest mb-4">{t.contact.tag}</span>
-            <h2 className="text-4xl md:text-5xl font-black mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 md:mb-6">
               {t.contact.titleStart}<span className="text-gradient-yellow">{t.contact.titleHighlight}</span>
             </h2>
-            <p className="text-lg text-muted-foreground mb-8">{t.contact.subtitle}</p>
-            <ul className="space-y-3 text-foreground/80">
+            <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8">{t.contact.subtitle}</p>
+            <ul className="space-y-3 text-foreground/80 text-sm md:text-base">
               {t.contact.bullets.map(b => <li key={b}>{b}</li>)}
             </ul>
           </div>
-          <form onSubmit={onSubmit} className="bg-card-grad p-8 rounded-2xl border border-brand-yellow/20 shadow-card-soft space-y-4">
+          <form onSubmit={onSubmit} className="bg-card-grad p-5 sm:p-8 rounded-2xl border border-brand-yellow/20 shadow-card-soft space-y-4">
             <div>
               <Label htmlFor="nome">{t.contact.name}</Label>
               <Input id="nome" name="nome" required placeholder={t.contact.namePh} />

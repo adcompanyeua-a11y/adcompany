@@ -54,36 +54,36 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-hero pt-32 pb-20 md:pt-40 md:pb-32">
-      <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-brand-yellow/20 blur-[120px] animate-glow" />
-      <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-brand-royal/40 blur-[120px]" />
-      <div className="container relative mx-auto grid lg:grid-cols-2 gap-12 items-center">
-        <div className="space-y-8">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.05]">
+    <section className="relative overflow-hidden bg-hero pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-40 md:pb-32">
+      <div className="absolute -top-40 -right-40 h-[300px] w-[300px] md:h-[600px] md:w-[600px] rounded-full bg-brand-yellow/20 blur-[80px] md:blur-[120px] animate-glow" />
+      <div className="absolute -bottom-40 -left-40 h-[250px] w-[250px] md:h-[500px] md:w-[500px] rounded-full bg-brand-royal/40 blur-[80px] md:blur-[120px]" />
+      <div className="container relative mx-auto grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="space-y-6 md:space-y-8 text-center lg:text-left">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1]">
             {t.hero.titleStart}<span className="text-gradient-yellow">{t.hero.titleHighlight}</span>{t.hero.titleEnd}
           </h1>
-          <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
             {t.hero.subtitle}
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
             <Button
               variant="hero"
               size="xl"
+              className="w-full sm:w-auto"
               data-cal-link="adcompany.eua-gmail.com/45min"
               data-cal-namespace="45min"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
             >
               <Calendar className="mr-2 h-5 w-5" /> {t.hero.cta}
             </Button>
-
           </div>
-          <div className="flex flex-wrap gap-6 pt-4 text-sm text-muted-foreground">
-            <div><span className="text-brand-yellow font-bold text-2xl font-display">{t.hero.statNum1}</span><br />{t.hero.stat1}</div>
-            <div><span className="text-brand-yellow font-bold text-2xl font-display">{t.hero.statNum2}</span><br />{t.hero.stat2}</div>
-            <div><span className="text-brand-yellow font-bold text-2xl font-display">{t.hero.statNum3}</span><br />{t.hero.stat3}</div>
+          <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-4 text-xs sm:text-sm text-muted-foreground">
+            <div><span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum1}</span>{t.hero.stat1}</div>
+            <div><span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum2}</span>{t.hero.stat2}</div>
+            <div><span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum3}</span>{t.hero.stat3}</div>
           </div>
         </div>
-        <div className="relative animate-float">
+        <div className="relative animate-float max-w-sm sm:max-w-md lg:max-w-none mx-auto w-full">
           <div className="absolute inset-0 rounded-full bg-brand-yellow/30 blur-3xl" />
           <img
             src={rocket}

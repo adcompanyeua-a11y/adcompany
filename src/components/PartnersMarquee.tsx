@@ -26,16 +26,29 @@ const partners = [
   { src: souza,          alt: "Souza Construction" },
 ];
 
-const CARD_WIDTH = 280; // px
-const GAP = 24; // px
-const STEP = CARD_WIDTH + GAP;
+const DESKTOP_CARD_WIDTH = 280;
+const MOBILE_CARD_WIDTH = 180;
+const GAP = 24;
 
 const PartnersMarquee = () => {
   const { t } = useLanguage();
+  const [isMobile, setIsMobile] = useState(false);
   const [offset, setOffset] = useState(0);
   const indexRef = useRef(0);
   const animRef = useRef<number | null>(null);
   const pauseRef = useRef(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const apply = () => setIsMobile(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
+  const CARD_WIDTH = isMobile ? MOBILE_CARD_WIDTH : DESKTOP_CARD_WIDTH;
+  const STEP = CARD_WIDTH + GAP;
+  const VISIBLE = isMobile ? 2 : 4;
 
   useEffect(() => {
     let start: number | null = null;
@@ -95,7 +108,7 @@ const PartnersMarquee = () => {
       {/* Wrapper com máscara nas bordas */}
       <div
         className="relative mx-auto overflow-hidden"
-        style={{ width: `${4 * CARD_WIDTH + 3 * GAP}px`, maxWidth: "100%" }}
+        style={{ width: `${VISIBLE * CARD_WIDTH + (VISIBLE - 1) * GAP}px`, maxWidth: "100%" }}
         onMouseEnter={() => { pauseRef.current = true; }}
         onMouseLeave={() => { pauseRef.current = false; }}
       >
@@ -118,7 +131,7 @@ const PartnersMarquee = () => {
             <div
               key={i}
               className="flex items-center justify-center shrink-0 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 px-4 hover:bg-white/20 transition-colors duration-300"
-              style={{ width: `${CARD_WIDTH}px`, height: "128px" }}
+              style={{ width: `${CARD_WIDTH}px`, height: isMobile ? "96px" : "128px" }}
             >
               <img
                 src={p.src}
