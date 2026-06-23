@@ -63,7 +63,7 @@ const Hero = () => {
             {t.hero.titleStart}<span className="text-gradient-yellow">{t.hero.titleHighlight}</span>{t.hero.titleEnd}
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-            <strong className="text-brand-yellow">AD Company</strong> {t.hero.subtitle}
+            {t.hero.subtitle}
           </p>
           <div className="flex flex-wrap gap-4">
             <Button
@@ -73,14 +73,14 @@ const Hero = () => {
               data-cal-namespace="45min"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
             >
-              <Calendar className="mr-2 h-5 w-5" /> AGENDAR REUNIÃO AGORA
+              <Calendar className="mr-2 h-5 w-5" /> {t.hero.cta}
             </Button>
 
           </div>
           <div className="flex flex-wrap gap-6 pt-4 text-sm text-muted-foreground">
-            <div><span className="text-brand-yellow font-bold text-2xl font-display">+200</span><br />{t.hero.stat1}</div>
-            <div><span className="text-brand-yellow font-bold text-2xl font-display">Especializado</span><br />{t.hero.stat2}</div>
-            <div><span className="text-brand-yellow font-bold text-2xl font-display">24/7</span><br />{t.hero.stat3}</div>
+            <div><span className="text-brand-yellow font-bold text-2xl font-display">{t.hero.statNum1}</span><br />{t.hero.stat1}</div>
+            <div><span className="text-brand-yellow font-bold text-2xl font-display">{t.hero.statNum2}</span><br />{t.hero.stat2}</div>
+            <div><span className="text-brand-yellow font-bold text-2xl font-display">{t.hero.statNum3}</span><br />{t.hero.stat3}</div>
           </div>
         </div>
         <div className="relative animate-float">
