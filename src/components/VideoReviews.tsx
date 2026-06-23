@@ -4,11 +4,11 @@ import { Calendar } from "lucide-react";
 
 const videos = [
   {
-    name: "Juliana - HOUSE CLEANING",
+    name: "Juliana - House Cleaning",
     id: "Fjujm8dqZlM",
   },
   {
-    name: "Gabriela - HOUSE CLEANING",
+    name: "Gabriela - House Cleaning",
     id: "bSgF-_oNpEA",
   },
 ];
