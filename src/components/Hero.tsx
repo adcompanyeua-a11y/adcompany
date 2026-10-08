@@ -64,11 +64,14 @@ const Hero = () => {
           <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
             {t.hero.subtitle}
           </p>
-          <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+          <div className="hidden flex-wrap gap-4 justify-center lg:justify-start">
             <Button
               variant="hero"
               size="xl"
-              className="w-full sm:w-auto"
+              disabled
+              aria-hidden="true"
+              tabIndex={-1}
+              className="w-full sm:w-auto pointer-events-none"
               data-cal-link="adcompany.eua-gmail.com/45min"
               data-cal-namespace="45min"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
@@ -76,6 +79,7 @@ const Hero = () => {
               <Calendar className="mr-2 h-5 w-5" /> {t.hero.cta}
             </Button>
           </div>
+
           <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-4 text-xs sm:text-sm text-muted-foreground">
             <div><span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum1}</span>{t.hero.stat1}</div>
             <div><span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum2}</span>{t.hero.stat2}</div>
