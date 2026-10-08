@@ -61,16 +61,12 @@ const VideoReviews = () => {
         </div>
 
         <div className="mt-10 md:mt-12 flex justify-center px-4">
-          <Button
-            variant="hero"
-            size="xl"
-            className="w-full sm:w-auto"
-            data-cal-link="adcompany.eua-gmail.com/45min"
-            data-cal-namespace="45min"
-            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-          >
-            <Calendar className="mr-2 h-5 w-5" /> AGENDAR REUNIÃO AGORA
+          <Button asChild variant="hero" size="xl" className="w-full sm:w-auto">
+            <a href="#contato">
+              <Calendar className="mr-2 h-5 w-5" /> AGENDAR REUNIÃO AGORA
+            </a>
           </Button>
+
         </div>
       </div>
     </section>
