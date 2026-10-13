@@ -45,7 +45,7 @@ const MethodVCP = () => {
                 return (
                   <div
                     key={p.letter}
-                    className="relative pl-16 md:pl-20 pr-14 md:pr-20 py-5 md:py-7 p-5 md:p-7 rounded-2xl bg-card-grad border border-border hover:border-brand-yellow/50 transition-smooth shadow-card-soft"
+                    className="relative pl-16 md:pl-20 pr-14 md:pr-20 py-5 md:py-7 rounded-2xl bg-card-grad border border-border hover:border-brand-yellow/50 transition-smooth shadow-card-soft"
                   >
                     <div className="absolute left-2 md:left-4 top-5 md:top-7 flex h-8 w-8 items-center justify-center rounded-full bg-yellow-grad text-brand-navy shadow-yellow-soft">
                       <Icon className="h-4 w-4" strokeWidth={2.5} />
