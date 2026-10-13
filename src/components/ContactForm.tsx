@@ -5,6 +5,34 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
+
+// Lê cookies do Meta Pixel (_fbp/_fbc) para deduplicação de eventos
+const getCookie = (name: string): string | undefined => {
+  const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
+  return match ? decodeURIComponent(match[1]) : undefined;
+};
+
+// Envia o evento de Lead para o Meta pela API de Conversões (servidor)
+const sendCapiLead = (payload: { nome: string; whatsapp: string; email: string }) => {
+  const [first_name, ...rest] = payload.nome.trim().split(/\s+/);
+  const eventId = `lead_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+  // Dispara também no pixel do navegador com o mesmo event_id (deduplicação)
+  (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq?.("track", "Lead", {}, { eventID: eventId });
+  void supabase.functions.invoke("meta-capi", {
+    body: {
+      event_name: "Lead",
+      email: payload.email,
+      phone: payload.whatsapp,
+      first_name,
+      last_name: rest.join(" ") || undefined,
+      event_source_url: window.location.href,
+      fbp: getCookie("_fbp"),
+      fbc: getCookie("_fbc"),
+      event_id: eventId,
+    },
+  }).catch(() => { /* falha silenciosa: não bloqueia o lead */ });
+};
 
 // ✅ Validação anti-bot
 const isValidLead = (nome: string, whatsapp: string): boolean => {
