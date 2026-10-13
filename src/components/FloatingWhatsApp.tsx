@@ -9,7 +9,7 @@ const FloatingWhatsApp = () => {
 
   return (
     <a
-      href={`https://wa.me/5548994952650?text=${message}`}
+      href={`https://wa.me/554899495265?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={lang === "pt" ? "Fale conosco pelo WhatsApp" : "Habla con nosotros por WhatsApp"}
