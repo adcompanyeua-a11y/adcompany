@@ -23,7 +23,7 @@ export const translations = {
       stat3: "Suporte por semana",
     },
     services: {
-      tag: "NOSSOS SERVIÇOS",
+      tag: "NOSSO MÉTODO",
       titleStart: "Soluções completas com o método ",
       titleHighlight: "V.C.P",
       subtitle: "Esse método é o caminho para empresários que querem parar de depender da sorte e começar a crescer com estratégia.",
