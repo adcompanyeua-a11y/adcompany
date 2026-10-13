@@ -38,7 +38,7 @@ const LeadsProof = () => {
 
         <p className="mt-8 text-center text-foreground/80 max-w-3xl mx-auto text-sm sm:text-base md:text-lg px-2">
           🔔 Leads chegando direto no WhatsApp do nosso cliente — com nome, telefone, tipo de serviço e agendamento.{" "}
-          <span className="text-brand-yellow font-bold">Você fecha, a gente entrega.</span>
+          <span className="text-brand-yellow font-bold">Nós entregamos, você fecha.</span>
         </p>
       </div>
     </section>
