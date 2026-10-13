@@ -36,6 +36,17 @@ export const translations = {
         { title: "Criação de Sites & Landing Pages", text: "Sites rápidos, modernos e otimizados para conversão. Cada visitante vira uma oportunidade real." },
       ],
     },
+    method: {
+      tag: "MÉTODO V.C.P",
+      titleStart: "O pilar da nossa estratégia para ",
+      titleHighlight: "empresários nos EUA",
+      titleEnd: " que querem se destacar de forma inteligente e eficaz.",
+      pillars: [
+        { letter: "V", name: "Visibilidade", qualifier: "orgânica", text: "Criamos toda a base digital do seu negócio: Google My Business, site profissional, Instagram e Página do Facebook... tudo o que você precisa para ser encontrado sem depender de anúncios pagos." },
+        { letter: "C", name: "Captação", qualifier: "funil que converte", text: "Com a visibilidade certa, estruturamos seu funil para atrair e converter clientes. Aqui, entramos com estratégias como tráfego pago, automações e relacionamento." },
+        { letter: "P", name: "Prosperidade", qualifier: "crescimento sustentável", text: "Com essa estrutura funcionando, você conquista previsibilidade e crescimento sustentável. Mais clientes, mais controle, mais lucro." },
+      ],
+    },
     process: {
       tag: "METODOLOGIA",
       titleStart: "Roteiro de ",
@@ -127,6 +138,17 @@ export const translations = {
         { title: "Gestión de Redes Sociales", text: "Creación de contenido estratégico, engagement y crecimiento orgánico en Instagram, Facebook y TikTok." },
         { title: "Tráfico Pago en Google Local Service", text: "Tu empresa con Sello Guaranteed, credibilidad y crecimiento pagando solo por lead calificado, una herramienta poderosa que pocas agencias saben usar." },
         { title: "Creación de Sitios & Landing Pages", text: "Sitios rápidos, modernos y optimizados para conversión. Cada visitante se convierte en una oportunidad real." },
+      ],
+    },
+    method: {
+      tag: "MÉTODO V.C.P",
+      titleStart: "El pilar de nuestra estrategia para ",
+      titleHighlight: "empresarios en EE.UU.",
+      titleEnd: " que quieren destacar de forma inteligente y eficaz.",
+      pillars: [
+        { letter: "V", name: "Visibilidad", qualifier: "orgánica", text: "Creamos toda la base digital de tu negocio: Google My Business, sitio profesional, Instagram y Página de Facebook... todo lo que necesitas para que te encuentren sin depender de anuncios pagos." },
+        { letter: "C", name: "Captación", qualifier: "embudo que convierte", text: "Con la visibilidad correcta, estructuramos tu embudo para atraer y convertir clientes. Aquí aplicamos estrategias como tráfico pago, automatizaciones y relación con el cliente." },
+        { letter: "P", name: "Prosperidad", qualifier: "crecimiento sostenible", text: "Con esta estructura funcionando, logras previsibilidad y crecimiento sostenible. Más clientes, más control, más lucro." },
       ],
     },
     process: {
