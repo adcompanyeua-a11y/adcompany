@@ -118,6 +118,7 @@ const ContactForm = () => {
 
       if (data.ok) {
         toast.success(t.contact.success);
+        sendCapiLead(payload);
         form.reset();
         setSegmento("");
         setFuncionarios("");
