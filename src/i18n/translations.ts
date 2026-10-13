@@ -13,7 +13,7 @@ export const translations = {
       titleStart: "Nós encontramos os ",
       titleHighlight: "clientes",
       titleEnd: ", e você fecha o serviço.",
-      subtitle: "A AD Company é especialista em negócios brasileiros nos EUA. Atraímos clientes qualificados usando Google Ads ou LSA, Meta Ads e SEO Local — sem desperdiçar seu orçamento.",
+      subtitle: "A AD Company é especialista em negócios brasileiros nos EUA. Atraímos clientes qualificados usando o método V.C.P exclusivo e aprovado por dezenas de clientes.",
       cta: "AGENDAR ANÁLISE GRATUITA",
       statNum1: "+80",
       stat1: "negócios brasileiros crescendo nos EUA",
@@ -24,9 +24,9 @@ export const translations = {
     },
     services: {
       tag: "NOSSOS SERVIÇOS",
-      titleStart: "Soluções completas em ",
-      titleHighlight: "marketing digital",
-      subtitle: "Estratégias integradas para crescer com previsibilidade e escalar seu negócio com inteligência.",
+      titleStart: "Soluções completas com o método ",
+      titleHighlight: "V.C.P",
+      subtitle: "Esse método é o caminho para empresários que querem parar de depender da sorte e começar a crescer com estratégia.",
       items: [
         { title: "Posicionamento Estratégico", text: "Definimos o posicionamento ideal da sua marca para se destacar da concorrência e atrair o público certo." },
         { title: "Gestão de Tráfego (Anúncios)", text: "Campanhas otimizadas em Google Ads e Meta Ads para gerar leads qualificados com baixo custo por aquisição." },
