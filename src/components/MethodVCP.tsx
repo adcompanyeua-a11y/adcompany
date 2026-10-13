@@ -38,28 +38,28 @@ const MethodVCP = () => {
           </div>
 
           <div className="relative">
-            <div className="absolute left-6 md:left-8 top-6 bottom-6 w-px bg-gradient-to-b from-brand-yellow/60 via-brand-yellow/25 to-transparent" />
+            <div className="absolute left-6 md:left-8 top-8 bottom-8 w-px bg-gradient-to-b from-brand-yellow/50 via-brand-yellow/30 to-brand-yellow/15" />
             <div className="space-y-5 md:space-y-6">
               {t.method.pillars.map((p, i) => {
                 const Icon = icons[i];
                 return (
                   <div
                     key={p.letter}
-                    className="relative pl-16 md:pl-20 p-5 md:p-7 rounded-2xl bg-card-grad border border-border hover:border-brand-yellow/50 transition-smooth shadow-card-soft"
+                    className="relative pl-16 md:pl-20 pr-14 md:pr-20 py-5 md:py-7 p-5 md:p-7 rounded-2xl bg-card-grad border border-border hover:border-brand-yellow/50 transition-smooth shadow-card-soft"
                   >
-                    <div className="absolute left-2 md:left-4 top-5 md:top-7 flex h-9 w-9 md:h-8 md:w-8 items-center justify-center rounded-full bg-yellow-grad text-brand-navy shadow-yellow-soft">
-                      <Icon className="h-4 w-4 md:h-4 md:w-4" strokeWidth={2.5} />
+                    <div className="absolute left-2 md:left-4 top-5 md:top-7 flex h-8 w-8 items-center justify-center rounded-full bg-yellow-grad text-brand-navy shadow-yellow-soft">
+                      <Icon className="h-4 w-4" strokeWidth={2.5} />
                     </div>
-                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2 md:mb-3">
+                    <div className="relative flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2 md:mb-3">
                       <h3 className="text-xl md:text-2xl font-black text-brand-yellow">{p.name}</h3>
                       <span className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground/50">
                         {p.qualifier}
                       </span>
                     </div>
-                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{p.text}</p>
+                    <p className="relative text-muted-foreground text-sm md:text-base leading-relaxed">{p.text}</p>
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute right-4 md:right-6 bottom-1 text-5xl md:text-7xl font-black text-brand-yellow/10 leading-none"
+                      className="pointer-events-none absolute right-4 md:right-5 bottom-2 text-4xl md:text-6xl font-black text-brand-yellow/10 leading-none"
                     >
                       {p.letter}
                     </span>
