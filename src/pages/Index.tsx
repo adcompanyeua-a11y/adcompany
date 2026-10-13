@@ -18,8 +18,10 @@ const Index = () => {
       <Hero />
       <ContactForm />
       <Suspense fallback={null}>
-        <Services />
         <MethodVCP />
+      </Suspense>
+      <Suspense fallback={null}>
+        <Services />
         <VideoReviews />
         <LeadsProof />
         <PartnersMarquee />
