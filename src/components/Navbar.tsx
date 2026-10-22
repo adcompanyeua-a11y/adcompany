@@ -6,7 +6,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 const Navbar = () => {
   const { t } = useLanguage();
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-brand-navy/70 border-b border-brand-yellow/10">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-2xl bg-brand-navy/70 border-b border-white/5 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-brand-yellow/30 after:to-transparent">
       <div className="container mx-auto flex items-center justify-between py-3">
         <a href="#" className="flex items-center gap-2 sm:gap-3">
           <img src={logo} alt="AD Company logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain" width={48} height={48} fetchPriority="high" decoding="async" />

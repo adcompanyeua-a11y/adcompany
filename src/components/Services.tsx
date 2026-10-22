@@ -28,7 +28,7 @@ const Services = () => {
           {t.services.items.map((item, i) => {
             const Icon = icons[i];
             return (
-              <div key={item.title} className="group relative p-6 md:p-8 rounded-2xl bg-card-grad border border-border hover:border-brand-yellow/50 transition-smooth shadow-card-soft hover:-translate-y-1">
+              <div key={item.title} className="group relative p-6 md:p-8 rounded-xl bg-card-grad border border-border ring-1 ring-white/5 hover:border-brand-yellow/50 hover:shadow-[0_0_30px_-5px_hsl(48_100%_50%/0.2)] transition-smooth shadow-card-soft hover:-translate-y-1">
                 <div className="inline-flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-xl mb-4 md:mb-5 shadow-yellow-soft group-hover:scale-110 transition-smooth bg-yellow-grad text-brand-navy">
                   <Icon className="h-6 w-6 md:h-7 md:w-7" strokeWidth={2.5} />
                 </div>

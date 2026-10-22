@@ -81,9 +81,15 @@ const Hero = () => {
           </div>
 
           <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-4 text-xs sm:text-sm text-muted-foreground">
-            <div><span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum1}</span>{t.hero.stat1}</div>
-            <div><span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum2}</span>{t.hero.stat2}</div>
-            <div><span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum3}</span>{t.hero.stat3}</div>
+            <div className="border border-white/10 rounded-xl px-3 py-3 sm:px-4 bg-white/5 backdrop-blur-sm">
+              <span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum1}</span>{t.hero.stat1}
+            </div>
+            <div className="border border-white/10 rounded-xl px-3 py-3 sm:px-4 bg-white/5 backdrop-blur-sm">
+              <span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum2}</span>{t.hero.stat2}
+            </div>
+            <div className="border border-white/10 rounded-xl px-3 py-3 sm:px-4 bg-white/5 backdrop-blur-sm">
+              <span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum3}</span>{t.hero.stat3}
+            </div>
           </div>
         </div>
         <div className="relative animate-float w-full max-w-[95%] sm:max-w-[420px] md:max-w-[520px] lg:max-w-none mx-auto px-2 sm:px-0">

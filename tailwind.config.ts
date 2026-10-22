@@ -19,7 +19,7 @@ export default {
     extend: {
       fontFamily: {
         display: ['Roboto', 'sans-serif'],
-        sans: ['Roboto', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         brand: {
