@@ -1,5 +1,6 @@
 import { Target, Megaphone, Globe, Search, Users } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const GoogleIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -14,6 +15,7 @@ const icons = [Target, Megaphone, Search, Users, GoogleIcon, Globe];
 
 const Services = () => {
   const { t } = useLanguage();
+  const gridRef = useScrollReveal();
   return (
     <section id="servicos" className="py-16 md:py-24 bg-brand-navy relative">
       <div className="container mx-auto">
@@ -24,12 +26,12 @@ const Services = () => {
           </h2>
           <p className="text-muted-foreground text-base md:text-lg">{t.services.subtitle}</p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {t.services.items.map((item, i) => {
             const Icon = icons[i];
             return (
-              <div key={item.title} className="group relative p-6 md:p-8 rounded-xl bg-card-grad border border-border ring-1 ring-white/5 hover:border-brand-yellow/50 hover:shadow-[0_0_30px_-5px_hsl(48_100%_50%/0.2)] transition-smooth shadow-card-soft hover:-translate-y-1">
-                <div className="inline-flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-xl mb-4 md:mb-5 shadow-yellow-soft group-hover:scale-110 transition-smooth bg-yellow-grad text-brand-navy">
+              <div key={item.title} className="stagger-item group relative p-6 md:p-8 rounded-xl bg-card-grad border border-border ring-1 ring-foreground/5 hover:border-brand-yellow/50 hover:scale-[1.02] transition-transform duration-200 shadow-card-soft cursor-default">
+                <div className="inline-flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-xl mb-4 md:mb-5 shadow-yellow-soft group-hover:scale-105 transition-transform duration-150 bg-yellow-grad text-brand-navy">
                   <Icon className="h-6 w-6 md:h-7 md:w-7" strokeWidth={2.5} />
                 </div>
                 <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">{item.title}</h3>

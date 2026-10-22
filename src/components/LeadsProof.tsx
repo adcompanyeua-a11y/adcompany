@@ -1,7 +1,9 @@
 import prova1 from "@/assets/leads/prova1.webp";
 import prova2 from "@/assets/leads/prova2.webp";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const LeadsProof = () => {
+  const gridRef = useScrollReveal();
   return (
     <section className="py-16 md:py-24 bg-background relative overflow-hidden">
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-64 w-64 md:h-96 md:w-96 rounded-full bg-brand-yellow/10 blur-[80px] md:blur-[120px]" />
@@ -19,11 +21,11 @@ const LeadsProof = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-5 md:gap-8 max-w-4xl mx-auto">
+        <div ref={gridRef} className="grid sm:grid-cols-2 gap-5 md:gap-8 max-w-4xl mx-auto">
           {[prova1, prova2].map((src, i) => (
             <div
               key={i}
-              className="rounded-2xl overflow-hidden border border-brand-yellow/20 bg-brand-navy/60 backdrop-blur shadow-card-soft hover:border-brand-yellow transition-smooth"
+              className="stagger-item rounded-xl overflow-hidden border border-brand-yellow/20 bg-brand-navy/60 hover:border-brand-yellow/50 transition-transform duration-200 hover:scale-[1.01]"
             >
               <div className="flex items-center gap-2 px-4 py-2 border-b border-brand-yellow/10 bg-brand-navy/80">
                 <span className="relative flex h-2 w-2">
