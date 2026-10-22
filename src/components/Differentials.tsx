@@ -1,8 +1,10 @@
 import { CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const Differentials = () => {
   const { t } = useLanguage();
+  const gridRef = useScrollReveal();
   return (
     <section id="diferenciais" className="py-16 md:py-24 bg-brand-navy">
       <div className="container mx-auto">
@@ -13,9 +15,9 @@ const Differentials = () => {
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {t.differentials.blocks.map(b => (
-            <div key={b.title} className="p-6 md:p-8 rounded-2xl bg-card-grad border border-border shadow-card-soft">
+            <div key={b.title} className="stagger-item p-6 md:p-8 rounded-2xl bg-card-grad border border-border hover:shadow-card-soft">
               <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-brand-yellow">{b.title}</h3>
               <ul className="space-y-3 md:space-y-4">
                 {b.items.map(it => (

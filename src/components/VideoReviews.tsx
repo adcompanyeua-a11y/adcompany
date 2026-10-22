@@ -1,6 +1,7 @@
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const videos = [
   {
@@ -15,6 +16,7 @@ const videos = [
 
 const VideoReviews = () => {
   const { lang } = useLanguage();
+  const gridRef = useScrollReveal();
   const tag = lang === "pt" ? "DEPOIMENTOS" : "TESTIMONIOS";
   const titleStart = lang === "pt" ? "O que nossos " : "Lo que nuestros ";
   const titleHighlight = lang === "pt" ? "clientes dizem" : "clientes dicen";
@@ -37,11 +39,11 @@ const VideoReviews = () => {
           <p className="text-muted-foreground text-base md:text-lg">{subtitle}</p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+        <div ref={gridRef} className="grid sm:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
           {videos.map((v) => (
             <div
               key={v.name}
-              className="relative rounded-2xl overflow-hidden border border-brand-yellow/20 bg-brand-navy/60 backdrop-blur hover:border-brand-yellow transition-smooth group"
+              className="stagger-item relative rounded-xl overflow-hidden border border-brand-yellow/20 bg-brand-navy/80 hover:border-brand-yellow/60 transition-transform duration-200 hover:scale-[1.01] group"
             >
               <div className="w-full aspect-square bg-black">
                 <iframe

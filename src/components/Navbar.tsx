@@ -13,10 +13,10 @@ const Navbar = () => {
           <span className="font-display text-base sm:text-lg font-extrabold text-brand-yellow tracking-tight">AD COMPANY</span>
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-foreground/80">
-          <a href="#servicos" className="hover:text-brand-yellow transition-smooth">{t.nav.services}</a>
-          <a href="#processo" className="hover:text-brand-yellow transition-smooth">{t.nav.process}</a>
-          <a href="#diferenciais" className="hover:text-brand-yellow transition-smooth">{t.nav.differentials}</a>
-          <a href="#contato" className="hover:text-brand-yellow transition-smooth">{t.nav.contact}</a>
+          <a href="#servicos" className="hover:text-brand-yellow transition-colors duration-150">{t.nav.services}</a>
+          <a href="#processo" className="hover:text-brand-yellow transition-colors duration-150">{t.nav.process}</a>
+          <a href="#diferenciais" className="hover:text-brand-yellow transition-colors duration-150">{t.nav.differentials}</a>
+          <a href="#contato" className="hover:text-brand-yellow transition-colors duration-150">{t.nav.contact}</a>
         </nav>
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
