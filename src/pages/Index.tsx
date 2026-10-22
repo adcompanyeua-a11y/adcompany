@@ -11,20 +11,33 @@ const LeadsProof = lazy(() => import("@/components/LeadsProof"));
 const Differentials = lazy(() => import("@/components/Differentials"));
 const Footer = lazy(() => import("@/components/Footer"));
 
+const SectionDivider = () => (
+  <div aria-hidden="true" className="h-px bg-gradient-to-r from-transparent via-brand-yellow/15 to-transparent" />
+);
+
 const Index = () => {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
       <Hero />
+      <SectionDivider />
       <ContactForm />
+      <SectionDivider />
       <Suspense fallback={null}>
         <Services />
+        <SectionDivider />
         <MethodVCP />
+        <SectionDivider />
         <VideoReviews />
+        <SectionDivider />
         <LeadsProof />
+        <SectionDivider />
         <PartnersMarquee />
+        <SectionDivider />
         <Process />
+        <SectionDivider />
         <Differentials />
+        <SectionDivider />
         <Footer />
       </Suspense>
 

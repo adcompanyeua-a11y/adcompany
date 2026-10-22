@@ -136,7 +136,7 @@ const PartnersMarquee = () => {
               <img
                 src={p.src}
                 alt={p.alt}
-                className="max-h-24 max-w-full object-contain"
+                className="max-h-24 max-w-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
                 loading="lazy"
                 decoding="async"
               />

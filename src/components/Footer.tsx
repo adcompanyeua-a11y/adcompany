@@ -5,7 +5,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 const Footer = () => {
   const { t } = useLanguage();
   return (
-    <footer className="bg-brand-navy border-t border-brand-yellow/10 pt-16 pb-8">
+    <footer className="bg-brand-navy border-t border-white/5 py-10">
       <div className="container mx-auto grid md:grid-cols-3 gap-10 mb-10">
         <div>
           <div className="flex items-center gap-3 mb-4">
