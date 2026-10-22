@@ -80,14 +80,14 @@ const Hero = () => {
             </Button>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-4 text-xs sm:text-sm text-muted-foreground">
-            <div className="border border-white/10 rounded-xl px-3 py-3 sm:px-4 bg-white/5 backdrop-blur-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-6 pt-4 text-xs sm:text-sm text-muted-foreground">
+            <div className="border border-white/10 rounded-xl px-4 py-3 bg-white/5 backdrop-blur-sm flex items-center justify-center gap-3 sm:block">
               <span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum1}</span>{t.hero.stat1}
             </div>
-            <div className="border border-white/10 rounded-xl px-3 py-3 sm:px-4 bg-white/5 backdrop-blur-sm">
+            <div className="border border-white/10 rounded-xl px-4 py-3 bg-white/5 backdrop-blur-sm flex items-center justify-center gap-3 sm:block">
               <span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum2}</span>{t.hero.stat2}
             </div>
-            <div className="border border-white/10 rounded-xl px-3 py-3 sm:px-4 bg-white/5 backdrop-blur-sm">
+            <div className="border border-white/10 rounded-xl px-4 py-3 bg-white/5 backdrop-blur-sm flex items-center justify-center gap-3 sm:block">
               <span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{t.hero.statNum3}</span>{t.hero.stat3}
             </div>
           </div>
