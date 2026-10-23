@@ -5,6 +5,8 @@ export const translations = {
     nav: {
       services: "Serviços",
       process: "Processo",
+      method: "Método V.C.P",
+      testimonials: "Depoimentos",
       differentials: "Diferenciais",
       contact: "Contato",
       cta: "Consulta Gratuita",
@@ -109,6 +111,8 @@ export const translations = {
     nav: {
       services: "Servicios",
       process: "Proceso",
+      method: "Método V.C.P",
+      testimonials: "Testimonios",
       differentials: "Diferenciales",
       contact: "Contacto",
       cta: "Consulta Gratuita",
