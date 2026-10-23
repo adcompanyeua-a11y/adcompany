@@ -1,47 +1,70 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-<!-- Meta Pixel Code (deferred to improve FCP) -->
-<script>
-window.addEventListener('load', function() {
-  setTimeout(function() {
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1401323918107108');
-    fbq('track', 'PageView');
-  }, 1500);
-});
-</script>
-<!-- End Meta Pixel Code -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AD Company —assessoria de marketing</title>
-    <meta name="description" content="AD Company: agência de marketing digital especialista em tráfego pago, Google Ads, Meta Ads e gestão de mídias sociais para escalar seu negócio.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0f1a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <title>AD Company — Marketing Digital para Brasileiros nos EUA</title>
+    <meta name="description" content="AD Company: agência de marketing digital especialista em tráfego pago, Google Ads, Meta Ads e gestão de mídias sociais para escalar seu negócio nos EUA.">
     <meta name="author" content="AD Company" />
+
+    <!-- Favicon -->
     <link rel="icon" href="/favicon.png" type="image/png">
-    <link rel="preconnect" href="https://www.youtube.com" />
-    <link rel="preconnect" href="https://connect.facebook.net" />
+
+    <!-- ── Preconnect crítico (fontes e analytics) ── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://connect.facebook.net" />
+    <link rel="dns-prefetch" href="https://www.youtube.com" />
     <link rel="dns-prefetch" href="https://adcompany-calcom.8qr4sb.easypanel.host" />
+    <link rel="dns-prefetch" href="https://api.agenciaadcompany.com.br" />
 
+    <!-- ── Fontes: display swap para não bloquear renderização ── -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" />
+    </noscript>
 
-    
-    
+    <!-- ── Preload hero image (LCP crítico em mobile) ── -->
+    <link rel="preload" as="image" href="/hero-mockup.webp" fetchpriority="high" />
+
+    <!-- ── Open Graph ── -->
     <meta property="og:type" content="website" />
-
+    <meta property="og:title" content="AD Company — Marketing Digital para Brasileiros nos EUA">
+    <meta property="og:description" content="AD Company: especialista em tráfego pago, Google Ads, Meta Ads para escalar seu negócio nos EUA.">
+    <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9e673b72-eee3-4155-9002-eac2de994098/id-preview-705eb471--d48657fc-eb97-445c-b7bf-9ef17496b3a8.lovable.app-1777414276543.png">
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:title" content="AD Company —assessoria de marketing">
-  <meta name="twitter:title" content="AD Company —assessoria de marketing">
-  <meta property="og:description" content="AD Company: agência de marketing digital especialista em tráfego pago, Google Ads, Meta Ads e gestão de mídias sociais para escalar seu negócio.">
-  <meta name="twitter:description" content="AD Company: agência de marketing digital especialista em tráfego pago, Google Ads, Meta Ads e gestão de mídias sociais para escalar seu negócio.">
-  <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9e673b72-eee3-4155-9002-eac2de994098/id-preview-705eb471--d48657fc-eb97-445c-b7bf-9ef17496b3a8.lovable.app-1777414276543.png">
-  <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9e673b72-eee3-4155-9002-eac2de994098/id-preview-705eb471--d48657fc-eb97-445c-b7bf-9ef17496b3a8.lovable.app-1777414276543.png">
-</head>
+    <meta name="twitter:title" content="AD Company — Marketing Digital para Brasileiros nos EUA">
+    <meta name="twitter:description" content="AD Company: especialista em tráfego pago, Google Ads, Meta Ads para escalar seu negócio nos EUA.">
+    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9e673b72-eee3-4155-9002-eac2de994098/id-preview-705eb471--d48657fc-eb97-445c-b7bf-9ef17496b3a8.lovable.app-1777414276543.png">
+
+    <!-- ── Meta Pixel: diferido 2 s após load para não bloquear FCP ── -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '1401323918107108');
+          fbq('track', 'PageView');
+        }, 2000);
+      });
+    </script>
+  </head>
 
   <body>
     <noscript><img height="1" width="1" style="display:none"

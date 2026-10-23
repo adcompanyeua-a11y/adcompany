@@ -13,22 +13,22 @@ import smilean from "@/assets/partners/smilean.webp";
 import souza from "@/assets/partners/souza.webp";
 
 const partners = [
-  { src: premium,        alt: "Premium Home Service Contractors LLC" },
-  { src: broom,          alt: "Broom Broom House Cleaning" },
+  { src: premium,        alt: "Premium Home Service" },
+  { src: broom,          alt: "Broom Broom Cleaning" },
   { src: beautyByJanete, alt: "Beauty by Janete" },
-  { src: borges,         alt: "Borges Services LLC" },
+  { src: borges,         alt: "Borges Services" },
   { src: cariocas,       alt: "Carioca's Cleaning" },
-  { src: excellence,     alt: "Excellence Cleaning Services" },
+  { src: excellence,     alt: "Excellence Cleaning" },
   { src: medeiros,       alt: "Medeiros Floorings" },
-  { src: prime,          alt: "Prime Cleaning Services" },
-  { src: servCleaning,   alt: "Serv Cleaning Professional Cleaning" },
-  { src: smilean,        alt: "Smilean All Purpose Cleaning" },
+  { src: prime,          alt: "Prime Cleaning" },
+  { src: servCleaning,   alt: "Serv Cleaning" },
+  { src: smilean,        alt: "Smilean Cleaning" },
   { src: souza,          alt: "Souza Construction" },
 ];
 
-const DESKTOP_CARD_WIDTH = 260;
-const MOBILE_CARD_WIDTH  = 160;
-const GAP = 20;
+const DESKTOP_CARD_WIDTH = 200;
+const MOBILE_CARD_WIDTH  = 130;
+const GAP = 16;
 
 const PartnersMarquee = () => {
   const { t } = useLanguage();
@@ -47,25 +47,21 @@ const PartnersMarquee = () => {
   }, []);
 
   const CARD_WIDTH = isMobile ? MOBILE_CARD_WIDTH : DESKTOP_CARD_WIDTH;
-  const STEP    = CARD_WIDTH + GAP;
-  const VISIBLE = isMobile ? 2 : 4;
+  const STEP = CARD_WIDTH + GAP;
+  const VISIBLE = isMobile ? 3 : 5;
 
   useEffect(() => {
     let start: number | null = null;
     const duration = 600;
-    const interval = 2800;
+    const interval = 2600;
 
     const animateSlide = (timestamp: number) => {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
-      const eased = progress < 0.5
-        ? 2 * progress * progress
-        : -1 + (4 - 2 * progress) * progress;
-
+      const eased = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
       const from = indexRef.current * STEP;
       const to   = (indexRef.current + 1) * STEP;
       setOffset(from + (to - from) * eased);
-
       if (progress < 1) {
         animRef.current = requestAnimationFrame(animateSlide);
       } else {
@@ -91,46 +87,51 @@ const PartnersMarquee = () => {
   const items = [...partners, ...partners];
 
   return (
-    <section className="py-16 md:py-20 bg-background border-t border-white/5 overflow-hidden relative">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-40 bg-gradient-to-r from-transparent via-yellow-400/3 to-transparent" />
-      </div>
-
-      {/* Header */}
-      <div className="container mx-auto px-4 mb-10 text-center relative">
-        <p className="text-xs font-bold tracking-[0.18em] text-white/30 uppercase mb-3">
+    <section className="py-16 md:py-20 relative overflow-hidden" style={{ background: "var(--surface)", borderTop: "1px solid var(--border)" }}>
+      <div className="max-w-6xl mx-auto px-5 md:px-8 mb-10 text-center">
+        <p
+          className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-3"
+          style={{ color: "var(--text-dim)" }}
+        >
           {t.partners.title}
         </p>
-        <div className="divider-gold max-w-xs mx-auto" />
+        <div className="rule-gold max-w-xs mx-auto" />
       </div>
 
       {/* Carousel */}
       <div
         className="relative mx-auto overflow-hidden"
-        style={{ width: `${VISIBLE * CARD_WIDTH + (VISIBLE - 1) * GAP}px`, maxWidth: "100%" }}
+        style={{ width: `${VISIBLE * CARD_WIDTH + (VISIBLE - 1) * GAP}px`, maxWidth: "calc(100% - 40px)" }}
         onMouseEnter={() => { pauseRef.current = true; }}
         onMouseLeave={() => { pauseRef.current = false; }}
       >
-        {/* Edge fade masks */}
-        <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, hsl(220 25% 6%), transparent)" }} />
-        <div className="absolute right-0 top-0 h-full w-20 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to left, hsl(220 25% 6%), transparent)" }} />
-
+        {/* Fade masks */}
         <div
-          className="flex"
-          style={{ gap: `${GAP}px`, transform: `translateX(-${offset}px)` }}
-        >
+          className="absolute left-0 top-0 h-full w-12 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to right, var(--surface), transparent)" }}
+        />
+        <div
+          className="absolute right-0 top-0 h-full w-12 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to left, var(--surface), transparent)" }}
+        />
+
+        <div className="flex" style={{ gap: `${GAP}px`, transform: `translateX(-${offset}px)` }}>
           {items.map((p, i) => (
             <div
               key={i}
-              className="flex items-center justify-center shrink-0 rounded-xl border border-white/6 bg-white/[0.03] px-5 hover:bg-white/[0.06] transition-colors duration-300"
-              style={{ width: `${CARD_WIDTH}px`, height: isMobile ? "80px" : "100px" }}
+              className="flex items-center justify-center shrink-0 rounded-xl"
+              style={{
+                width: `${CARD_WIDTH}px`,
+                height: isMobile ? "64px" : "80px",
+                background: "var(--surface-2)",
+                border: "1px solid var(--border)",
+              }}
             >
               <img
                 src={p.src}
                 alt={p.alt}
-                className="max-h-16 max-w-full object-contain opacity-50 hover:opacity-80 transition-opacity duration-300"
+                className="max-h-12 max-w-[75%] object-contain"
+                style={{ opacity: 0.45 }}
                 loading="lazy"
                 decoding="async"
               />

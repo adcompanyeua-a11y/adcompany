@@ -1,43 +1,68 @@
-import { CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
+const Check = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+    <circle cx="7" cy="7" r="6.5" stroke="rgba(245,196,0,0.2)" />
+    <path d="M4.5 7l1.8 1.8L9.5 5.5" stroke="#f5c400" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 const Differentials = () => {
   const { t } = useLanguage();
   const gridRef = useScrollReveal();
 
   return (
-    <section id="diferenciais" className="py-24 md:py-32 bg-card relative overflow-hidden">
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
-      <div className="absolute -right-20 bottom-1/3 h-[500px] w-[300px] rounded-full bg-yellow-400/4 blur-[120px]" />
+    <section id="diferenciais" className="py-28 md:py-36 relative" style={{ background: "var(--surface)" }}>
+      <div className="rule-gold" />
 
-      <div className="container mx-auto px-4 md:px-6 relative">
+      <div className="max-w-6xl mx-auto px-5 md:px-8 pt-20">
+
         {/* Header */}
-        <div className="text-center mb-16 md:mb-20 max-w-2xl mx-auto">
-          <div className="section-label mx-auto mb-5">{t.differentials.tag}</div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl">
+        <div className="mb-16 md:mb-20">
+          <div className="label mb-6">{t.differentials.tag}</div>
+          <h2 className="text-[clamp(2.2rem,5vw,3.8rem)]" style={{ color: "var(--text)" }}>
             {t.differentials.titleStart}
-            <span className="text-gradient-yellow block sm:inline"> {t.differentials.titleHighlight}</span>
-            {t.differentials.titleEnd}
+            <span className="text-gradient-yellow"> {t.differentials.titleHighlight}</span>
+            {t.differentials.titleEnd && <span> {t.differentials.titleEnd}</span>}
           </h2>
         </div>
 
         {/* Cards */}
-        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: "var(--border)" }}>
           {t.differentials.blocks.map((b) => (
             <div
               key={b.title}
-              className="stagger-item group p-7 rounded-2xl bg-background border border-white/5 hover:border-yellow-400/20 transition-all duration-200 hover:shadow-[0_4px_32px_-4px_hsl(46_100%_52%/0.1)]"
+              className="stagger-item group relative px-7 py-9 md:px-8 md:py-10"
+              style={{ background: "var(--surface)" }}
+              onMouseEnter={e => (e.currentTarget.style.background = "var(--surface-2)")}
+              onMouseLeave={e => (e.currentTarget.style.background = "var(--surface)")}
             >
-              <h3 className="text-base font-bold mb-5 text-yellow-400">{b.title}</h3>
-              <ul className="space-y-3">
+              {/* Título do bloco */}
+              <h3
+                className="text-[13px] font-semibold tracking-wider uppercase mb-6"
+                style={{ color: "var(--gold)" }}
+              >
+                {b.title}
+              </h3>
+
+              {/* Itens */}
+              <ul className="space-y-3.5">
                 {b.items.map((it) => (
-                  <li key={it} className="flex gap-3 items-start">
-                    <CheckCircle2 className="h-4 w-4 text-yellow-400/70 shrink-0 mt-0.5" />
-                    <span className="text-white/55 text-sm leading-snug">{it}</span>
+                  <li key={it} className="flex items-start gap-3">
+                    <span className="mt-0.5 shrink-0"><Check /></span>
+                    <span className="text-[13px] leading-snug" style={{ color: "var(--text-muted)" }}>
+                      {it}
+                    </span>
                   </li>
                 ))}
               </ul>
+
+              {/* Linha top hover */}
+              <div
+                className="absolute top-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 origin-left"
+                style={{ background: "var(--gold)", transition: "transform 0.3s var(--ease)" }}
+              />
             </div>
           ))}
         </div>

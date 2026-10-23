@@ -1,105 +1,106 @@
-import { Eye, Magnet, TrendingUp } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-
-const icons = [Eye, Magnet, TrendingUp];
 
 const MethodVCP = () => {
   const { t } = useLanguage();
   const listRef = useScrollReveal();
 
   return (
-    <section id="metodo" className="py-24 md:py-32 bg-card relative overflow-hidden">
-      {/* Faint dot grid */}
-      <div
-        className="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(circle, hsl(46 100% 52%) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-      {/* Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[1px] w-3/4 bg-gradient-to-r from-transparent via-yellow-400/20 to-transparent" />
-      <div className="absolute -right-20 top-1/3 h-[500px] w-[300px] rounded-full bg-yellow-400/4 blur-[120px]" />
+    <section id="metodo" className="py-28 md:py-36 relative" style={{ background: "var(--surface)" }}>
+      {/* Sep */}
+      <div className="rule-gold" />
 
-      <div className="container relative mx-auto px-4 md:px-6">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-start">
+      <div className="max-w-6xl mx-auto px-5 md:px-8 pt-20">
 
-          {/* ── Sticky left ── */}
-          <div className="lg:sticky lg:top-28 space-y-8">
-            <div>
-              <div className="section-label mb-5">{t.method.tag}</div>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl leading-[1.05]">
-                {t.method.titleStart}
-                <span className="text-gradient-yellow block">
-                  {t.method.titleHighlight}
-                </span>
-                {t.method.titleEnd}
-              </h2>
-            </div>
-
-            {/* VCP badges */}
-            <div className="flex items-center gap-4">
-              {["V", "C", "P"].map((letter, i) => (
-                <div key={letter} className="flex flex-col items-center gap-2">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-yellow-grad text-brand-navy font-black text-2xl shadow-yellow-soft">
-                    {letter}
-                  </span>
-                  <span className="text-[10px] font-bold text-white/30 tracking-widest uppercase">
-                    {["VISIB.", "CONV.", "PERF."][i]}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Divider */}
-            <div className="divider-gold" />
-
-            <p className="text-white/45 text-sm leading-relaxed">
-              Metodologia exclusiva criada a partir de mais de {" "}
-              <span className="text-yellow-400 font-semibold">100+ campanhas</span>{" "}
-              para empresas brasileiras nos EUA.
-            </p>
+        {/* Header */}
+        <div className="grid md:grid-cols-2 gap-10 mb-20 md:mb-24 items-end">
+          <div>
+            <div className="label mb-6">{t.method.tag}</div>
+            <h2 className="text-[clamp(2.2rem,5vw,3.8rem)]" style={{ color: "var(--text)" }}>
+              {t.method.titleStart}
+              <span className="text-gradient-yellow"> {t.method.titleHighlight}</span>
+              {t.method.titleEnd && <span> {t.method.titleEnd}</span>}
+            </h2>
           </div>
-
-          {/* ── Timeline right ── */}
-          <div ref={listRef} className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-5 top-6 bottom-6 w-px bg-gradient-to-b from-yellow-400/40 via-yellow-400/20 to-transparent" />
-
-            <div className="space-y-4">
-              {t.method.pillars.map((p, i) => {
-                const Icon = icons[i];
-                return (
-                  <div
-                    key={p.letter}
-                    className="stagger-item group relative pl-14 pr-6 py-6 rounded-2xl bg-background border border-white/5 hover:border-yellow-400/20 transition-all duration-200 hover:shadow-[0_4px_32px_-4px_hsl(46_100%_52%/0.1)]"
-                  >
-                    {/* Circle on line */}
-                    <div className="absolute left-2 top-6 flex h-6 w-6 items-center justify-center rounded-full bg-yellow-grad text-brand-navy shadow-yellow-soft">
-                      <Icon className="h-3 w-3" strokeWidth={2.5} />
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex items-baseline gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-yellow-400">{p.name}</h3>
-                      <span className="text-xs font-semibold uppercase tracking-widest text-white/30">{p.qualifier}</span>
-                    </div>
-                    <p className="text-white/50 text-sm leading-relaxed">{p.text}</p>
-
-                    {/* Big ghost letter */}
-                    <span
-                      aria-hidden="true"
-                      className="pointer-events-none absolute right-5 bottom-3 text-7xl font-black text-yellow-400/6 leading-none select-none"
-                    >
-                      {p.letter}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <p className="text-[14px] leading-relaxed md:pb-1" style={{ color: "var(--text-muted)" }}>
+            Metodologia exclusiva criada a partir de{" "}
+            <span style={{ color: "var(--gold)", fontWeight: 600 }}>100+ campanhas</span>{" "}
+            para empresas brasileiras nos EUA.
+          </p>
         </div>
+
+        {/* Pillars — horizontal em desktop, vertical no mobile */}
+        <div ref={listRef} className="grid md:grid-cols-3 gap-px" style={{ background: "var(--border)" }}>
+          {t.method.pillars.map((p, i) => (
+            <div
+              key={p.letter}
+              className="stagger-item group relative px-8 py-10 md:px-10 md:py-12"
+              style={{ background: "var(--surface)" }}
+            >
+              {/* Letra grande — não ostensiva */}
+              <span
+                aria-hidden="true"
+                className="absolute right-7 bottom-6 text-[8rem] leading-none font-black select-none pointer-events-none"
+                style={{
+                  fontFamily: "Syne, sans-serif",
+                  color: "rgba(245,196,0,0.04)",
+                  transition: "color 0.3s ease",
+                }}
+              >
+                {p.letter}
+              </span>
+
+              {/* Número sequencial */}
+              <span
+                className="block text-[11px] font-semibold tracking-widest mb-6"
+                style={{ color: "var(--text-dim)" }}
+              >
+                0{i + 1}
+              </span>
+
+              {/* Letra destaque */}
+              <div
+                className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl text-xl font-black"
+                style={{
+                  fontFamily: "Syne, sans-serif",
+                  background: "linear-gradient(135deg, #f5c400 0%, #e09200 100%)",
+                  color: "#09090f",
+                }}
+              >
+                {p.letter}
+              </div>
+
+              <h3
+                className="text-[18px] font-bold mb-1 leading-tight"
+                style={{ color: "var(--text)" }}
+              >
+                {p.name}
+              </h3>
+              <p
+                className="text-[11px] font-semibold tracking-widest uppercase mb-4"
+                style={{ color: "var(--text-dim)" }}
+              >
+                {p.qualifier}
+              </p>
+              <p
+                className="text-[13px] leading-relaxed"
+                style={{ color: "var(--text-muted)" }}
+              >
+                {p.text}
+              </p>
+
+              {/* Linha top hover */}
+              <div
+                className="absolute top-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 origin-left"
+                style={{
+                  background: "var(--gold)",
+                  transition: "transform 0.3s var(--ease)",
+                }}
+              />
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
