@@ -21,6 +21,29 @@ async function sha256(value: string): Promise<string> {
   return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('')
 }
 
+// Meta exige o telefone com código do país (sem +, espaços ou traços).
+// O formulário usa o formato brasileiro "(00) 00000-0000"; sem o DDI "55" o hash não casa.
+function normalizePhone(raw: string): string {
+  const digits = raw.replace(/\D/g, '').replace(/^0+/, '')
+  if (!digits) return ''
+  // Já veio com "+" (código do país informado, ex.: +1 EUA): mantém como está
+  if (raw.trim().startsWith('+')) return raw.replace(/\D/g, '')
+  // 10-11 dígitos = DDD + número (formato nacional BR) -> acrescenta 55
+  if (digits.length === 10 || digits.length === 11) return `55${digits}`
+  return digits
+}
+
+// Se o cookie _fbc não existir mas a URL tiver fbclid (clique no anúncio), monta o fbc no formato do Meta.
+function fbcFromUrl(url?: string): string | undefined {
+  if (!url) return undefined
+  try {
+    const fbclid = new URL(url).searchParams.get('fbclid')
+    return fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined
+  } catch {
+    return undefined
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
@@ -33,6 +56,7 @@ Deno.serve(async (req) => {
 
   const token = Deno.env.get('META_CAPI_ACCESS_TOKEN')
   if (!token) {
+    console.error('[meta-capi] META_CAPI_ACCESS_TOKEN nao configurado')
     return new Response(JSON.stringify({ error: 'CAPI token not configured' }), {
       status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
@@ -42,6 +66,7 @@ Deno.serve(async (req) => {
   try {
     const parsed = BodySchema.safeParse(await req.json())
     if (!parsed.success) {
+      console.error('[meta-capi] corpo invalido', JSON.stringify(parsed.error.flatten().fieldErrors))
       return new Response(JSON.stringify({ error: parsed.error.flatten().fieldErrors }), {
         status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
@@ -60,13 +85,18 @@ Deno.serve(async (req) => {
 
   const userData: Record<string, unknown> = {}
   if (body.email) userData.em = [await sha256(body.email)]
-  if (body.phone) userData.ph = [await sha256(body.phone.replace(/\D/g, ''))]
+  const phone = body.phone ? normalizePhone(body.phone) : ''
+  if (phone) userData.ph = [await sha256(phone)]
   if (body.first_name) userData.fn = [await sha256(body.first_name)]
   if (body.last_name) userData.ln = [await sha256(body.last_name)]
   if (clientIp) userData.client_ip_address = clientIp
   if (userAgent) userData.client_user_agent = userAgent
   if (body.fbp) userData.fbp = body.fbp
-  if (body.fbc) userData.fbc = body.fbc
+  const fbc = body.fbc || fbcFromUrl(body.event_source_url)
+  if (fbc) userData.fbc = fbc
+  // external_id estável (hash do email, senão do telefone) ajuda o Meta a reconhecer o mesmo contato
+  const externalSource = body.email || phone
+  if (externalSource) userData.external_id = [await sha256(externalSource)]
 
   const event: Record<string, unknown> = {
     event_name: body.event_name,
@@ -86,6 +116,15 @@ Deno.serve(async (req) => {
     },
   )
   const metaJson = await metaRes.json().catch(() => ({}))
+
+  // Log sem dados pessoais: só quais chaves de correspondência foram enviadas e a resposta do Meta
+  console.log('[meta-capi]', JSON.stringify({
+    event_name: body.event_name,
+    event_id: body.event_id,
+    meta_status: metaRes.status,
+    match_keys: Object.keys(userData),
+    meta_response: metaJson,
+  }))
 
   if (!metaRes.ok) {
     return new Response(JSON.stringify({ error: 'Meta API error', detail: metaJson }), {
