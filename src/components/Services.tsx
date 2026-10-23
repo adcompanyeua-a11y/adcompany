@@ -16,50 +16,26 @@ const icons = [Target, Megaphone, Search, Users, GoogleIcon, Globe];
 const Services = () => {
   const { t } = useLanguage();
   const gridRef = useScrollReveal();
-
   return (
-    <section id="servicos" className="py-24 md:py-32 bg-background relative overflow-hidden">
-      {/* Background texture */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-2/3 bg-gradient-to-r from-transparent via-white/8 to-transparent" />
-        <div className="absolute top-1/2 right-[-10%] h-[400px] w-[400px] rounded-full bg-yellow-400/4 blur-[120px]" />
-      </div>
-
-      <div className="container mx-auto px-4 md:px-6 relative">
-        {/* Section header */}
-        <div className="max-w-2xl mx-auto text-center mb-16 md:mb-20">
-          <div className="section-label mx-auto mb-5">{t.services.tag}</div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl mb-5">
-            {t.services.titleStart}
-            <span className="text-gradient-yellow block sm:inline"> {t.services.titleHighlight}</span>
+    <section id="servicos" className="py-16 md:py-24 bg-brand-navy relative">
+      <div className="container mx-auto">
+        <div className="max-w-3xl mx-auto text-center mb-10 md:mb-16">
+          <span className="inline-block px-4 py-1 rounded-full bg-brand-yellow/10 text-brand-yellow text-sm font-bold tracking-widest mb-4">{t.services.tag}</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 md:mb-6">
+            {t.services.titleStart}<span className="text-gradient-yellow">{t.services.titleHighlight}</span>
           </h2>
-          <p className="text-white/50 text-lg leading-relaxed">{t.services.subtitle}</p>
+          <p className="text-muted-foreground text-base md:text-lg">{t.services.subtitle}</p>
         </div>
-
-        {/* Cards grid */}
-        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {t.services.items.map((item, i) => {
             const Icon = icons[i];
             return (
-              <div
-                key={item.title}
-                className="stagger-item group relative p-7 rounded-2xl bg-card-grad border border-white/6 hover:border-yellow-400/25 transition-all duration-200 hover:shadow-[0_8px_40px_-8px_hsl(46_100%_52%/0.12)] cursor-default"
-              >
-                {/* Number */}
-                <span className="absolute top-5 right-6 text-[11px] font-bold text-white/15 tracking-widest tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
-                {/* Icon */}
-                <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-yellow-400/8 border border-yellow-400/12 text-yellow-400 group-hover:bg-yellow-400/12 transition-colors duration-200">
-                  <Icon className="h-5 w-5" strokeWidth={2} />
+              <div key={item.title} className="stagger-item group relative p-6 md:p-8 rounded-xl bg-card-grad border border-border ring-1 ring-foreground/5 hover:border-brand-yellow/50 hover:scale-[1.02] transition-transform duration-200 shadow-card-soft cursor-default">
+                <div className="inline-flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-xl mb-4 md:mb-5 shadow-yellow-soft group-hover:scale-105 transition-transform duration-150 bg-yellow-grad text-brand-navy">
+                  <Icon className="h-6 w-6 md:h-7 md:w-7" strokeWidth={2.5} />
                 </div>
-
-                <h3 className="text-lg font-bold mb-3 text-white">{item.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{item.text}</p>
-
-                {/* Hover line */}
-                <div className="absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">{item.title}</h3>
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{item.text}</p>
               </div>
             );
           })}
