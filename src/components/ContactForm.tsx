@@ -137,21 +137,34 @@ const ContactForm = () => {
   const revs = t.contact.revenues as Record<string, string>;
 
   return (
-    <section id="contato" className="py-16 md:py-24 bg-royal relative overflow-hidden">
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-64 w-64 md:h-96 md:w-96 rounded-full bg-brand-yellow/20 blur-[80px] md:blur-[120px]" />
-      <div className="container relative mx-auto max-w-5xl">
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div className="text-center lg:text-left">
-            <span className="inline-block px-4 py-1 rounded-full bg-brand-yellow/10 text-brand-yellow text-sm font-bold tracking-widest mb-4">{t.contact.tag}</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 md:mb-6">
-              {t.contact.titleStart}<span className="text-gradient-yellow">{t.contact.titleHighlight}</span>
+    <section id="contato" className="py-24 md:py-32 bg-card relative overflow-hidden">
+      {/* Glows */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+      <div className="absolute top-[-5%] left-1/2 -translate-x-1/2 h-[500px] w-[600px] rounded-full bg-yellow-400/6 blur-[140px] pointer-events-none" />
+
+      <div className="container relative mx-auto px-4 md:px-6 max-w-5xl">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-14 items-start">
+
+          {/* Left — copy */}
+          <div className="lg:sticky lg:top-28 text-center lg:text-left space-y-6">
+            <div className="section-label mx-auto lg:mx-0">{t.contact.tag}</div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl">
+              {t.contact.titleStart}
+              <span className="text-gradient-yellow block">{t.contact.titleHighlight}</span>
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8">{t.contact.subtitle}</p>
-            <ul className="space-y-3 text-foreground/80 text-sm md:text-base">
-              {t.contact.bullets.map(b => <li key={b}>{b}</li>)}
+            <p className="text-white/50 text-lg leading-relaxed">{t.contact.subtitle}</p>
+            <ul className="space-y-2 text-sm text-white/50">
+              {t.contact.bullets.map(b => (
+                <li key={b} className="flex items-start gap-2 justify-center lg:justify-start">
+                  <span className="text-yellow-400 mt-0.5">✓</span>
+                  {b}
+                </li>
+              ))}
             </ul>
           </div>
-          <form onSubmit={onSubmit} className="bg-card-grad p-5 sm:p-8 rounded-2xl border border-brand-yellow/20 shadow-card-soft space-y-4">
+
+          {/* Right — form */}
+          <form onSubmit={onSubmit} className="bg-background border border-white/6 p-6 sm:p-8 rounded-2xl space-y-4 shadow-[0_2px_40px_-8px_hsl(220_28%_4%/0.5)]">
             <div>
               <Label htmlFor="nome">{t.contact.name}</Label>
               <Input id="nome" name="nome" required placeholder={t.contact.namePh} />
@@ -230,6 +243,7 @@ const ContactForm = () => {
             </Button>
             <p className="text-xs text-muted-foreground text-center">{t.contact.privacy}</p>
           </form>
+          </div>
         </div>
       </div>
     </section>

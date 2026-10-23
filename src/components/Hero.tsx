@@ -1,12 +1,9 @@
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
+import { ArrowRight, TrendingUp, Users, Star } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 declare global {
-  interface Window {
-    Cal?: any;
-  }
+  interface Window { Cal?: any; }
 }
 
 const Hero = () => {
@@ -15,14 +12,12 @@ const Hero = () => {
   useEffect(() => {
     const loadCal = () => {
       (function (C: any, A: string, L: string) {
-        const p = function (a: any, ar: any) { a.q.push(ar); };
+        const p = (a: any, ar: any) => { a.q.push(ar); };
         const d = C.document;
         C.Cal = C.Cal || function () {
-          const cal = C.Cal;
-          const ar = arguments;
+          const cal = C.Cal; const ar = arguments;
           if (!cal.loaded) {
-            cal.ns = {};
-            cal.q = cal.q || [];
+            cal.ns = {}; cal.q = cal.q || [];
             d.head.appendChild(d.createElement("script")).src = A;
             cal.loaded = true;
           }
@@ -32,8 +27,7 @@ const Hero = () => {
             api.q = api.q || [];
             if (typeof namespace === "string") {
               cal.ns[namespace] = cal.ns[namespace] || api;
-              p(cal.ns[namespace], ar);
-              p(cal, ["initNamespace", namespace]);
+              p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]);
             } else p(cal, ar);
             return;
           }
@@ -52,60 +46,130 @@ const Hero = () => {
     }
   }, []);
 
+  const stats = [
+    { icon: TrendingUp, num: t.hero.statNum1, label: t.hero.stat1 },
+    { icon: Users,      num: t.hero.statNum2, label: t.hero.stat2 },
+    { icon: Star,       num: t.hero.statNum3, label: t.hero.stat3 },
+  ];
+
   return (
-    <section className="relative overflow-hidden bg-hero pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-40 md:pb-32">
-      <div className="absolute -top-40 -right-40 h-[300px] w-[300px] md:h-[600px] md:w-[600px] rounded-full bg-brand-yellow/20 blur-[80px] md:blur-[120px] animate-glow" />
-      <div className="absolute -bottom-40 -left-40 h-[250px] w-[250px] md:h-[500px] md:w-[500px] rounded-full bg-brand-royal/40 blur-[80px] md:blur-[120px]" />
-      <div className="container relative mx-auto grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-        <div className="space-y-6 md:space-y-8 text-center lg:text-left">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1]">
-            {t.hero.titleStart}<span className="text-gradient-yellow">{t.hero.titleHighlight}</span>{t.hero.titleEnd}
-          </h1>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
-            {t.hero.subtitle}
-          </p>
-          <div className="hidden flex-wrap gap-4 justify-center lg:justify-start">
-            <Button
-              variant="hero"
-              size="xl"
-              disabled
-              aria-hidden="true"
-              tabIndex={-1}
-              className="w-full sm:w-auto pointer-events-none"
-              data-cal-link="adcompany.eua-gmail.com/45min"
-              data-cal-namespace="45min"
-              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-            >
-              <Calendar className="mr-2 h-5 w-5" /> {t.hero.cta}
-            </Button>
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-background pt-16">
+      {/* Background blobs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-10%] right-[-8%] h-[500px] w-[500px] rounded-full bg-amber-500/8 blur-[120px] animate-glow" />
+        <div className="absolute bottom-[10%] left-[-6%]  h-[400px] w-[400px] rounded-full bg-blue-900/20  blur-[100px]" />
+        <div className="absolute top-[40%] left-[50%] h-[300px] w-[300px] rounded-full bg-yellow-400/4 blur-[80px]" />
+      </div>
+
+      {/* Subtle dot grid */}
+      <div
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, hsl(0 0% 100%) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+
+      <div className="container relative mx-auto px-4 md:px-6 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        {/* ── Left column ── */}
+        <div className="space-y-8 text-center lg:text-left">
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 section-label">
+            <span className="h-1.5 w-1.5 rounded-full bg-yellow-400" />
+            Agência de Performance Digital · USA
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-6 pt-4 text-xs sm:text-sm text-muted-foreground">
-            {[
-              { num: t.hero.statNum1, label: t.hero.stat1 },
-              { num: t.hero.statNum2, label: t.hero.stat2 },
-              { num: t.hero.statNum3, label: t.hero.stat3 },
-            ].map(({ num, label }) => (
-              <div key={label} className="hero-stat border border-foreground/10 rounded-xl px-4 py-3 bg-foreground/5 backdrop-blur-sm flex items-center justify-center gap-3 sm:block">
-                <span className="text-brand-yellow font-bold text-lg sm:text-2xl font-display block">{num}</span>{label}
+          {/* Headline */}
+          <div className="space-y-3">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl leading-[1.05]">
+              <span className="block text-white">
+                {t.hero.titleStart}
+              </span>
+              <span className="block text-gradient-yellow mt-1">
+                {t.hero.titleHighlight}
+              </span>
+              <span className="block text-white">
+                {t.hero.titleEnd}
+              </span>
+            </h1>
+          </div>
+
+          {/* Subtitle */}
+          <p className="text-lg text-white/55 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            {t.hero.subtitle}
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            <a
+              href="#contato"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-brand-navy bg-yellow-grad shadow-yellow-soft hover:brightness-105 active:scale-[0.97] transition-transform duration-150 text-base"
+            >
+              {t.hero.cta}
+              <ArrowRight className="h-4 w-4" />
+            </a>
+            <a
+              href="#depoimentos"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white/80 border border-white/10 hover:bg-white/5 active:scale-[0.97] transition-all duration-150 text-base"
+            >
+              Ver depoimentos
+            </a>
+          </div>
+
+          {/* Stats strip */}
+          <div className="grid grid-cols-3 gap-3 pt-2">
+            {stats.map(({ icon: Icon, num, label }) => (
+              <div
+                key={label}
+                className="hero-stat flex flex-col gap-1 p-4 rounded-xl border border-white/6 bg-white/[0.03]"
+              >
+                <Icon className="h-4 w-4 text-yellow-400/60 mb-1" />
+                <span className="text-2xl font-bold text-white leading-none">{num}</span>
+                <span className="text-xs text-white/45 leading-tight">{label}</span>
               </div>
             ))}
           </div>
         </div>
-        <div className="relative animate-float w-full max-w-[95%] sm:max-w-[420px] md:max-w-[520px] lg:max-w-none mx-auto px-2 sm:px-0">
-          <div className="absolute inset-0 rounded-full bg-brand-yellow/30 blur-3xl" />
-          <img
-            src="/hero-mockup.webp"
-            alt="Resultados AD Company no Google e WhatsApp"
-            className="relative w-full h-auto rounded-2xl md:rounded-3xl shadow-glow"
-            width={1448}
-            height={1086}
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
+
+        {/* ── Right column — Hero image ── */}
+        <div className="relative animate-float order-first lg:order-last">
+          {/* Glow halo */}
+          <div className="absolute inset-[-5%] rounded-[2rem] bg-yellow-400/10 blur-3xl" />
+
+          {/* Frame */}
+          <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden border border-white/8 shadow-[0_32px_80px_-8px_hsl(220_28%_4%/0.8)]">
+            <img
+              src="/hero-mockup.webp"
+              alt="Resultados AD Company no Google e WhatsApp"
+              className="w-full h-auto block"
+              width={1448}
+              height={1086}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+            {/* Bottom tint */}
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/60 to-transparent" />
+          </div>
+
+          {/* Floating badge */}
+          <div className="absolute -bottom-4 -left-4 lg:-left-8 bg-card-grad border border-white/10 rounded-2xl px-4 py-3 shadow-card-soft backdrop-blur-sm">
+            <div className="flex items-center gap-3">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
+              </span>
+              <div>
+                <p className="text-xs font-bold text-white leading-none">Leads ao vivo</p>
+                <p className="text-[10px] text-white/50 mt-0.5">Automação ativa</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Bottom fade */}
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 };
