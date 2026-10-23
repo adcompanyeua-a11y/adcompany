@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, TrendingUp, Users, Star } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 declare global {
@@ -9,7 +9,6 @@ declare global {
 const Hero = () => {
   const { t } = useLanguage();
 
-  // ── Cal.com — diferido até idle ──────────────────────────────────────
   useEffect(() => {
     const loadCal = () => {
       (function (C: any, A: string, L: string) {
@@ -35,9 +34,11 @@ const Hero = () => {
           p(cal, ar);
         };
       })(window, "https://adcompany-calcom.8qr4sb.easypanel.host/embed/embed.js", "init");
+
       window.Cal("init", "45min", { origin: "https://adcompany-calcom.8qr4sb.easypanel.host" });
       window.Cal.ns["45min"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
     };
+
     if ("requestIdleCallback" in window) {
       (window as any).requestIdleCallback(loadCal, { timeout: 3000 });
     } else {
@@ -46,173 +47,129 @@ const Hero = () => {
   }, []);
 
   const stats = [
-    { num: t.hero.statNum1, label: t.hero.stat1 },
-    { num: t.hero.statNum2, label: t.hero.stat2 },
-    { num: t.hero.statNum3, label: t.hero.stat3 },
+    { icon: TrendingUp, num: t.hero.statNum1, label: t.hero.stat1 },
+    { icon: Users,      num: t.hero.statNum2, label: t.hero.stat2 },
+    { icon: Star,       num: t.hero.statNum3, label: t.hero.stat3 },
   ];
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-16" style={{ background: "var(--bg)" }}>
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-background pt-16">
+      {/* Background blobs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-10%] right-[-8%] h-[500px] w-[500px] rounded-full bg-amber-500/8 blur-[120px] animate-glow" />
+        <div className="absolute bottom-[10%] left-[-6%]  h-[400px] w-[400px] rounded-full bg-blue-900/20  blur-[100px]" />
+        <div className="absolute top-[40%] left-[50%] h-[300px] w-[300px] rounded-full bg-yellow-400/4 blur-[80px]" />
+      </div>
 
-      {/* ── Noise grain overlay ─────────────────────────────────────── */}
+      {/* Subtle dot grid */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.018]"
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-          backgroundSize: "180px",
+          backgroundImage: "radial-gradient(circle, hsl(0 0% 100%) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
         }}
       />
 
-      {/* ── Subtle top glow ─────────────────────────────────────────── */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[1px] pointer-events-none"
-        style={{ background: "linear-gradient(to right, transparent, rgba(245,196,0,0.18), transparent)" }}
-      />
-      <div
-        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(245,196,0,0.04) 0%, transparent 70%)" }}
-      />
-
-      <div className="max-w-6xl mx-auto w-full px-5 md:px-8 py-20 lg:py-28">
-        <div className="grid lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px] gap-12 lg:gap-16 items-center">
-
-          {/* ── Left ─────────────────────────────────────────────────── */}
-          <div className="space-y-9">
-
-            {/* Eyebrow */}
-            <div className="label">
-              Agência de Performance Digital · EUA
-            </div>
-
-            {/* Headline — grande, editorial */}
-            <div>
-              <h1
-                className="text-[clamp(2.8rem,7vw,5.4rem)] leading-[1.03] tracking-[-0.035em]"
-                style={{ color: "var(--text)" }}
-              >
-                <span style={{ color: "var(--text-muted)" }}>{t.hero.titleStart} </span>
-                <br className="hidden sm:block" />
-                <span>{t.hero.titleHighlight}</span>
-                <br className="hidden sm:block" />
-                <span className="text-gradient-yellow">{t.hero.titleEnd}</span>
-              </h1>
-            </div>
-
-            {/* Subtitle */}
-            <p
-              className="text-[15px] leading-relaxed max-w-[520px]"
-              style={{ color: "var(--text-muted)" }}
-            >
-              {t.hero.subtitle}
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="#contato"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-[14px] font-semibold text-[#09090f] bg-yellow-grad active:scale-[0.97] transition-transform duration-150"
-                style={{ boxShadow: "0 4px 20px rgba(245,196,0,0.25)" }}
-              >
-                {t.hero.cta}
-                <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
-              </a>
-              <a
-                href="#depoimentos"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-[14px] font-medium active:scale-[0.97] transition-all duration-150"
-                style={{
-                  color: "var(--text-muted)",
-                  border: "1px solid var(--border-2)",
-                  background: "rgba(255,255,255,0.02)",
-                }}
-              >
-                Ver depoimentos
-              </a>
-            </div>
-
-            {/* Stats row — horizontal, limpo */}
-            <div className="pt-2 flex flex-wrap gap-x-8 gap-y-4">
-              {stats.map(({ num, label }, i) => (
-                <div key={label} className="hero-stat flex items-baseline gap-2.5" style={{ animationDelay: `${i * 70}ms` }}>
-                  <span
-                    className="text-[2rem] font-black leading-none tracking-tight"
-                    style={{ fontFamily: 'Syne, sans-serif', color: "var(--text)" }}
-                  >
-                    {num}
-                  </span>
-                  <span className="text-[12px] leading-tight max-w-[80px]" style={{ color: "var(--text-dim)" }}>
-                    {label}
-                  </span>
-                </div>
-              ))}
-            </div>
+      <div className="container relative mx-auto px-4 md:px-6 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        {/* ── Left column ── */}
+        <div className="space-y-8 text-center lg:text-left">
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 section-label">
+            <span className="h-1.5 w-1.5 rounded-full bg-yellow-400" />
+            Agência de Performance Digital · USA
           </div>
 
-          {/* ── Right — imagem com moldura editorial ─────────────────── */}
-          <div className="relative order-first lg:order-last">
+          {/* Headline */}
+          <div className="space-y-3">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl leading-[1.05]">
+              <span className="block text-white">
+                {t.hero.titleStart}
+              </span>
+              <span className="block text-gradient-yellow mt-1">
+                {t.hero.titleHighlight}
+              </span>
+              <span className="block text-white">
+                {t.hero.titleEnd}
+              </span>
+            </h1>
+          </div>
 
-            {/* Glow atrás */}
-            <div
-              className="absolute -inset-8 rounded-[2rem] pointer-events-none"
-              style={{ background: "radial-gradient(ellipse, rgba(245,196,0,0.06) 0%, transparent 70%)" }}
-            />
+          {/* Subtitle */}
+          <p className="text-lg text-white/55 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            {t.hero.subtitle}
+          </p>
 
-            {/* Moldura */}
-            <div
-              className="relative rounded-2xl overflow-hidden animate-float"
-              style={{
-                border: "1px solid rgba(255,255,255,0.08)",
-                boxShadow: "0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04)",
-              }}
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            <a
+              href="#contato"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-brand-navy bg-yellow-grad shadow-yellow-soft hover:brightness-105 active:scale-[0.97] transition-transform duration-150 text-base"
             >
-              <img
-                src="/hero-mockup.webp"
-                alt="Resultados AD Company"
-                className="w-full h-auto block"
-                width={960}
-                height={720}
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-              />
-              {/* Grade overlay na imagem */}
+              {t.hero.cta}
+              <ArrowRight className="h-4 w-4" />
+            </a>
+            <a
+              href="#depoimentos"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white/80 border border-white/10 hover:bg-white/5 active:scale-[0.97] transition-all duration-150 text-base"
+            >
+              Ver depoimentos
+            </a>
+          </div>
+
+          {/* Stats strip */}
+          <div className="grid grid-cols-3 gap-3 pt-2">
+            {stats.map(({ icon: Icon, num, label }) => (
               <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ background: "linear-gradient(180deg, transparent 50%, rgba(9,9,15,0.5) 100%)" }}
-              />
-            </div>
+                key={label}
+                className="hero-stat flex flex-col gap-1 p-4 rounded-xl border border-white/6 bg-white/[0.03]"
+              >
+                <Icon className="h-4 w-4 text-yellow-400/60 mb-1" />
+                <span className="text-2xl font-bold text-white leading-none">{num}</span>
+                <span className="text-xs text-white/45 leading-tight">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
 
-            {/* Badge flutuante — live */}
-            <div
-              className="absolute -bottom-5 -left-4 lg:-left-6 rounded-xl px-4 py-3 flex items-center gap-3"
-              style={{
-                background: "var(--surface-2)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                boxShadow: "0 8px 30px rgba(0,0,0,0.4)",
-                backdropFilter: "blur(12px)",
-              }}
-            >
-              <span className="relative flex h-2 w-2">
-                <span
-                  className="absolute inline-flex h-full w-full rounded-full opacity-75"
-                  style={{ background: "#22c55e", animation: "ping-slow 1.4s cubic-bezier(0,0,0.2,1) infinite" }}
-                />
-                <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: "#22c55e" }} />
+        {/* ── Right column — Hero image ── */}
+        <div className="relative animate-float order-first lg:order-last">
+          {/* Glow halo */}
+          <div className="absolute inset-[-5%] rounded-[2rem] bg-yellow-400/10 blur-3xl" />
+
+          {/* Frame */}
+          <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden border border-white/8 shadow-[0_32px_80px_-8px_hsl(220_28%_4%/0.8)]">
+            <img
+              src="/hero-mockup.webp"
+              alt="Resultados AD Company no Google e WhatsApp"
+              className="w-full h-auto block"
+              width={1448}
+              height={1086}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+            {/* Bottom tint */}
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/60 to-transparent" />
+          </div>
+
+          {/* Floating badge */}
+          <div className="absolute -bottom-4 -left-4 lg:-left-8 bg-card-grad border border-white/10 rounded-2xl px-4 py-3 shadow-card-soft backdrop-blur-sm">
+            <div className="flex items-center gap-3">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
               </span>
               <div>
-                <p className="text-[12px] font-semibold" style={{ color: "var(--text)", lineHeight: 1 }}>Leads ao vivo</p>
-                <p className="text-[10px] mt-0.5" style={{ color: "var(--text-dim)" }}>Automação ativa</p>
+                <p className="text-xs font-bold text-white leading-none">Leads ao vivo</p>
+                <p className="text-[10px] text-white/50 mt-0.5">Automação ativa</p>
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
       {/* Bottom fade */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-28 pointer-events-none"
-        style={{ background: "linear-gradient(to top, var(--bg), transparent)" }}
-      />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 };

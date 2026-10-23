@@ -6,71 +6,49 @@ const Process = () => {
   const gridRef = useScrollReveal();
 
   return (
-    <section id="processo" className="py-28 md:py-36 relative" style={{ background: "var(--bg)" }}>
-      <div className="rule-gold" />
+    <section id="processo" className="py-24 md:py-32 bg-background relative overflow-hidden">
+      {/* Gradient top */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[500px] w-[600px] rounded-full bg-yellow-400/4 blur-[150px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-5 md:px-8 pt-20">
-
+      <div className="container relative mx-auto px-4 md:px-6">
         {/* Header */}
-        <div className="grid md:grid-cols-2 gap-10 mb-16 md:mb-20 items-end">
-          <div>
-            <div className="label mb-6">{t.process.tag}</div>
-            <h2 className="text-[clamp(2.2rem,5vw,3.8rem)]" style={{ color: "var(--text)" }}>
-              {t.process.titleStart}
-              <span className="text-gradient-yellow"> {t.process.titleHighlight}</span>
-            </h2>
-          </div>
-          <p className="text-[14px] leading-relaxed md:pb-1 hidden md:block" style={{ color: "var(--text-muted)" }}>
-            {t.process.subtitle}
-          </p>
+        <div className="text-center mb-16 md:mb-20 max-w-2xl mx-auto">
+          <div className="section-label mx-auto mb-5">{t.process.tag}</div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl mb-5">
+            {t.process.titleStart}
+            <span className="text-gradient-yellow block sm:inline"> {t.process.titleHighlight}</span>
+          </h2>
+          <p className="text-white/50 text-lg">{t.process.subtitle}</p>
         </div>
-        <p className="text-[14px] leading-relaxed mb-12 md:hidden" style={{ color: "var(--text-muted)" }}>
-          {t.process.subtitle}
-        </p>
 
-        {/* Steps — lista horizontal limpa */}
-        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: "var(--border)" }}>
+        {/* Steps */}
+        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {t.process.steps.map((step, i) => (
             <div
               key={step.t}
-              className="stagger-item group relative px-7 py-9 md:px-8 md:py-10"
-              style={{ background: "var(--bg)" }}
-              onMouseEnter={e => (e.currentTarget.style.background = "var(--surface)")}
-              onMouseLeave={e => (e.currentTarget.style.background = "var(--bg)")}
+              className="stagger-item group relative p-7 rounded-2xl bg-card-grad border border-white/5 hover:border-yellow-400/20 transition-all duration-200 overflow-hidden"
             >
-              {/* Número grande fantasma */}
+              {/* Step number — ghost */}
               <span
                 aria-hidden="true"
-                className="absolute right-6 bottom-4 text-[5rem] font-black leading-none select-none pointer-events-none"
-                style={{ fontFamily: "Syne, sans-serif", color: "rgba(245,196,0,0.04)" }}
+                className="absolute -right-2 -bottom-4 text-[96px] font-black leading-none text-white/[0.025] select-none pointer-events-none"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
 
-              {/* Step index */}
-              <div
-                className="inline-flex h-7 w-7 items-center justify-center rounded-md text-[11px] font-bold mb-6 tabular-nums"
-                style={{
-                  background: "rgba(245,196,0,0.08)",
-                  color: "var(--gold)",
-                  border: "1px solid rgba(245,196,0,0.12)",
-                }}
-              >
-                {String(i + 1).padStart(2, "0")}
+              {/* Step badge */}
+              <div className="flex items-center gap-3 mb-5">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-yellow-400/8 border border-yellow-400/15 text-yellow-400 text-xs font-bold tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {i < t.process.steps.length - 1 && (
+                  <div className="flex-1 h-px bg-gradient-to-r from-yellow-400/15 to-transparent" />
+                )}
               </div>
 
-              <h3 className="text-[15px] font-semibold mb-2 leading-snug" style={{ color: "var(--text)" }}>
-                {step.t}
-              </h3>
-              <p className="text-[13px] leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                {step.d}
-              </p>
-
-              {/* Linha top hover */}
-              <div
-                className="absolute top-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 origin-left"
-                style={{ background: "var(--gold)", transition: "transform 0.3s var(--ease)" }}
-              />
+              <h3 className="text-base font-bold mb-2 text-white">{step.t}</h3>
+              <p className="text-white/45 text-sm leading-relaxed">{step.d}</p>
             </div>
           ))}
         </div>

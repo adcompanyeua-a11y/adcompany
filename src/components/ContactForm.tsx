@@ -137,24 +137,26 @@ const ContactForm = () => {
   const revs = t.contact.revenues as Record<string, string>;
 
   return (
-    <section id="contato" className="py-28 md:py-36 relative" style={{ background: "var(--bg)" }}>
-      <div className="rule-gold" />
+    <section id="contato" className="py-24 md:py-32 bg-card relative overflow-hidden">
+      {/* Glows */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+      <div className="absolute top-[-5%] left-1/2 -translate-x-1/2 h-[500px] w-[600px] rounded-full bg-yellow-400/6 blur-[140px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-5 md:px-8 pt-20">
-        <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-start">
+      <div className="container relative mx-auto px-4 md:px-6 max-w-5xl">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-14 items-start">
 
           {/* Left — copy */}
-          <div className="lg:sticky lg:top-28 space-y-7">
-            <div className="label">{t.contact.tag}</div>
-            <h2 className="text-[clamp(2.2rem,5vw,3.8rem)]" style={{ color: "var(--text)" }}>
+          <div className="lg:sticky lg:top-28 text-center lg:text-left space-y-6">
+            <div className="section-label mx-auto lg:mx-0">{t.contact.tag}</div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl">
               {t.contact.titleStart}
               <span className="text-gradient-yellow block">{t.contact.titleHighlight}</span>
             </h2>
-            <p className="text-[15px] leading-relaxed" style={{ color: "var(--text-muted)" }}>{t.contact.subtitle}</p>
-            <ul className="space-y-3">
+            <p className="text-white/50 text-lg leading-relaxed">{t.contact.subtitle}</p>
+            <ul className="space-y-2 text-sm text-white/50">
               {t.contact.bullets.map(b => (
-                <li key={b} className="flex items-start gap-3 text-[13px]" style={{ color: "var(--text-muted)" }}>
-                  <span style={{ color: "var(--gold)", marginTop: "2px", flexShrink: 0 }}>✓</span>
+                <li key={b} className="flex items-start gap-2 justify-center lg:justify-start">
+                  <span className="text-yellow-400 mt-0.5">✓</span>
                   {b}
                 </li>
               ))}
@@ -162,14 +164,7 @@ const ContactForm = () => {
           </div>
 
           {/* Right — form */}
-          <form
-            onSubmit={onSubmit}
-            className="rounded-2xl p-6 sm:p-8 space-y-4"
-            style={{
-              background: "var(--surface)",
-              border: "1px solid var(--border)",
-            }}
-          >
+          <form onSubmit={onSubmit} className="bg-background border border-white/6 p-6 sm:p-8 rounded-2xl space-y-4 shadow-[0_2px_40px_-8px_hsl(220_28%_4%/0.5)]">
             <div>
               <Label htmlFor="nome">{t.contact.name}</Label>
               <Input id="nome" name="nome" required placeholder={t.contact.namePh} />
