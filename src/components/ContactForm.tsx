@@ -137,7 +137,7 @@ const ContactForm = () => {
   const revs = t.contact.revenues as Record<string, string>;
 
   return (
-    <section id="contato" className="py-28 md:py-36 relative" style={{ background: "var(--bg)" }}>
+    <section id="contato" className="py-16 md:py-28 relative" style={{ background: "var(--bg)" }}>
       <div className="rule-gold" />
 
       <div className="max-w-6xl mx-auto px-5 md:px-8 pt-20">
@@ -146,7 +146,7 @@ const ContactForm = () => {
           {/* Left — copy */}
           <div className="lg:sticky lg:top-28 space-y-7">
             <div className="label">{t.contact.tag}</div>
-            <h2 className="text-[clamp(2.2rem,5vw,3.8rem)]" style={{ color: "var(--text)" }}>
+            <h2 className="text-[clamp(1.75rem,4.2vw,2.9rem)]" style={{ color: "var(--text)" }}>
               {t.contact.titleStart}
               <span className="text-gradient-yellow block">{t.contact.titleHighlight}</span>
             </h2>

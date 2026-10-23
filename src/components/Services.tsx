@@ -18,18 +18,18 @@ const Services = () => {
   const gridRef = useScrollReveal();
 
   return (
-    <section id="servicos" className="py-28 md:py-36 relative" style={{ background: "var(--bg)" }}>
+    <section id="servicos" className="py-16 md:py-28 relative" style={{ background: "var(--bg)" }}>
       {/* Separator top */}
       <div className="rule-gold mb-0 mx-auto max-w-6xl px-5 md:px-8" />
 
-      <div className="max-w-6xl mx-auto px-5 md:px-8 pt-20">
+      <div className="max-w-6xl mx-auto px-5 md:px-8 pt-14 md:pt-20">
 
         {/* Header — assimétrico */}
-        <div className="grid md:grid-cols-[1fr_auto] gap-8 items-end mb-16 md:mb-20">
+        <div className="grid md:grid-cols-[1fr_auto] gap-8 items-end mb-10 md:mb-16">
           <div>
             <div className="label mb-6">{t.services.tag}</div>
             <h2
-              className="text-[clamp(2.2rem,5vw,3.8rem)]"
+              className="text-[clamp(1.75rem,4.2vw,2.9rem)]"
               style={{ color: "var(--text)" }}
             >
               {t.services.titleStart}
