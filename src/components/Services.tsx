@@ -18,95 +18,48 @@ const Services = () => {
   const gridRef = useScrollReveal();
 
   return (
-    <section id="servicos" className="py-28 md:py-36 relative" style={{ background: "var(--bg)" }}>
-      {/* Separator top */}
-      <div className="rule-gold mb-0 mx-auto max-w-6xl px-5 md:px-8" />
+    <section id="servicos" className="py-24 md:py-32 bg-background relative overflow-hidden">
+      {/* Background texture */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-2/3 bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+        <div className="absolute top-1/2 right-[-10%] h-[400px] w-[400px] rounded-full bg-yellow-400/4 blur-[120px]" />
+      </div>
 
-      <div className="max-w-6xl mx-auto px-5 md:px-8 pt-20">
-
-        {/* Header — assimétrico */}
-        <div className="grid md:grid-cols-[1fr_auto] gap-8 items-end mb-16 md:mb-20">
-          <div>
-            <div className="label mb-6">{t.services.tag}</div>
-            <h2
-              className="text-[clamp(2.2rem,5vw,3.8rem)]"
-              style={{ color: "var(--text)" }}
-            >
-              {t.services.titleStart}
-              <span className="text-gradient-yellow"> {t.services.titleHighlight}</span>
-            </h2>
-          </div>
-          <p
-            className="text-[14px] leading-relaxed max-w-xs pb-1 hidden md:block"
-            style={{ color: "var(--text-muted)" }}
-          >
-            {t.services.subtitle}
-          </p>
+      <div className="container mx-auto px-4 md:px-6 relative">
+        {/* Section header */}
+        <div className="max-w-2xl mx-auto text-center mb-16 md:mb-20">
+          <div className="section-label mx-auto mb-5">{t.services.tag}</div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl mb-5">
+            {t.services.titleStart}
+            <span className="text-gradient-yellow block sm:inline"> {t.services.titleHighlight}</span>
+          </h2>
+          <p className="text-white/50 text-lg leading-relaxed">{t.services.subtitle}</p>
         </div>
 
-        <p
-          className="text-[14px] leading-relaxed mb-12 md:hidden"
-          style={{ color: "var(--text-muted)" }}
-        >
-          {t.services.subtitle}
-        </p>
-
-        {/* Cards */}
-        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: "var(--border)" }}>
+        {/* Cards grid */}
+        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {t.services.items.map((item, i) => {
             const Icon = icons[i];
             return (
               <div
                 key={item.title}
-                className="stagger-item group relative p-7 md:p-8 cursor-default"
-                style={{
-                  background: "var(--bg)",
-                  transition: "background 0.2s ease",
-                }}
-                onMouseEnter={e => (e.currentTarget.style.background = "var(--surface)")}
-                onMouseLeave={e => (e.currentTarget.style.background = "var(--bg)")}
+                className="stagger-item group relative p-7 rounded-2xl bg-card-grad border border-white/6 hover:border-yellow-400/25 transition-all duration-200 hover:shadow-[0_8px_40px_-8px_hsl(46_100%_52%/0.12)] cursor-default"
               >
-                {/* Número */}
-                <span
-                  className="absolute top-6 right-7 text-[11px] font-medium tabular-nums tracking-widest"
-                  style={{ color: "var(--text-dim)" }}
-                >
+                {/* Number */}
+                <span className="absolute top-5 right-6 text-[11px] font-bold text-white/15 tracking-widest tabular-nums">
                   {String(i + 1).padStart(2, "0")}
                 </span>
 
-                {/* Ícone */}
-                <div
-                  className="mb-7 inline-flex h-10 w-10 items-center justify-center rounded-lg"
-                  style={{
-                    background: "rgba(245,196,0,0.07)",
-                    border: "1px solid rgba(245,196,0,0.1)",
-                    color: "var(--gold)",
-                  }}
-                >
-                  <Icon className="h-4 w-4" strokeWidth={2} />
+                {/* Icon */}
+                <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-yellow-400/8 border border-yellow-400/12 text-yellow-400 group-hover:bg-yellow-400/12 transition-colors duration-200">
+                  <Icon className="h-5 w-5" strokeWidth={2} />
                 </div>
 
-                <h3
-                  className="text-[15px] font-semibold mb-3 leading-snug"
-                  style={{ color: "var(--text)" }}
-                >
-                  {item.title}
-                </h3>
-                <p
-                  className="text-[13px] leading-relaxed"
-                  style={{ color: "var(--text-muted)" }}
-                >
-                  {item.text}
-                </p>
+                <h3 className="text-lg font-bold mb-3 text-white">{item.title}</h3>
+                <p className="text-white/50 text-sm leading-relaxed">{item.text}</p>
 
-                {/* Linha hover no topo */}
-                <div
-                  className="absolute top-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 origin-left"
-                  style={{
-                    background: "var(--gold)",
-                    transition: "transform 0.3s var(--ease)",
-                  }}
-                />
+                {/* Hover line */}
+                <div className="absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </div>
             );
           })}
