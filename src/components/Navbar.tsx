@@ -16,7 +16,8 @@ const Navbar = () => {
 
   const links = [
     { label: t.nav.services,      href: "#servicos" },
-    { label: t.nav.process,       href: "#processo" },
+    { label: t.nav.method,        href: "#metodo" },
+    { label: t.nav.testimonials,  href: "#depoimentos" },
     { label: t.nav.differentials, href: "#diferenciais" },
   ];
 

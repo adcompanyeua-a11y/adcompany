@@ -243,6 +243,7 @@ const ContactForm = () => {
             </Button>
             <p className="text-xs text-muted-foreground text-center">{t.contact.privacy}</p>
           </form>
+          </div>
         </div>
       </div>
     </section>
