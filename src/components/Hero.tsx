@@ -60,9 +60,8 @@ const Hero = () => {
           <div className="section-label mb-6">Agência de Performance Digital · USA</div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl leading-[1.1]">
-            {t.hero.titleStart}
-            <span className="text-gradient-yellow">{t.hero.titleHighlight}</span>
-            {t.hero.titleEnd}
+            {t.hero.titleStart} {t.hero.titleHighlight}{" "}
+            <span className="text-gradient-yellow">{t.hero.titleEnd}</span>
           </h1>
 
           <p className="mt-6 text-base md:text-lg text-white/60 max-w-lg leading-relaxed">
@@ -92,7 +91,7 @@ const Hero = () => {
                 key={label}
                 className={`hero-stat pt-5 ${i > 0 ? "pl-4 md:pl-6 border-l border-white/10" : ""}`}
               >
-                <dt className="text-xl md:text-2xl font-bold text-white leading-none">{num}</dt>
+                <dt className="text-2xl md:text-3xl font-bold text-white leading-none">{num}</dt>
                 <dd className="mt-2 text-xs md:text-sm text-white/50 leading-snug">{label}</dd>
               </div>
             ))}
@@ -100,7 +99,7 @@ const Hero = () => {
         </div>
 
         {/* ── Imagem ── */}
-        <div className="relative">
+        <div className="relative order-first lg:order-last">
           <div className="rounded-xl overflow-hidden border border-white/10">
             <img
               src="/hero-mockup.webp"
