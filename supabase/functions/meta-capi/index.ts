@@ -56,6 +56,7 @@ Deno.serve(async (req) => {
 
   const token = Deno.env.get('META_CAPI_ACCESS_TOKEN')
   if (!token) {
+    console.error('[meta-capi] META_CAPI_ACCESS_TOKEN nao configurado')
     return new Response(JSON.stringify({ error: 'CAPI token not configured' }), {
       status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
@@ -65,6 +66,7 @@ Deno.serve(async (req) => {
   try {
     const parsed = BodySchema.safeParse(await req.json())
     if (!parsed.success) {
+      console.error('[meta-capi] corpo invalido', JSON.stringify(parsed.error.flatten().fieldErrors))
       return new Response(JSON.stringify({ error: parsed.error.flatten().fieldErrors }), {
         status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
@@ -114,6 +116,15 @@ Deno.serve(async (req) => {
     },
   )
   const metaJson = await metaRes.json().catch(() => ({}))
+
+  // Log sem dados pessoais: só quais chaves de correspondência foram enviadas e a resposta do Meta
+  console.log('[meta-capi]', JSON.stringify({
+    event_name: body.event_name,
+    event_id: body.event_id,
+    meta_status: metaRes.status,
+    match_keys: Object.keys(userData),
+    meta_response: metaJson,
+  }))
 
   if (!metaRes.ok) {
     return new Response(JSON.stringify({ error: 'Meta API error', detail: metaJson }), {
