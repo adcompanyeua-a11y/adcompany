@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ArrowRight, TrendingUp, Users, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 declare global {
@@ -47,97 +47,60 @@ const Hero = () => {
   }, []);
 
   const stats = [
-    { icon: TrendingUp, num: t.hero.statNum1, label: t.hero.stat1 },
-    { icon: Users,      num: t.hero.statNum2, label: t.hero.stat2 },
-    { icon: Star,       num: t.hero.statNum3, label: t.hero.stat3 },
+    { num: t.hero.statNum1, label: t.hero.stat1 },
+    { num: t.hero.statNum2, label: t.hero.stat2 },
+    { num: t.hero.statNum3, label: t.hero.stat3 },
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-background pt-16">
-      {/* Background blobs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-10%] right-[-8%] h-[500px] w-[500px] rounded-full bg-amber-500/8 blur-[120px] animate-glow" />
-        <div className="absolute bottom-[10%] left-[-6%]  h-[400px] w-[400px] rounded-full bg-blue-900/20  blur-[100px]" />
-        <div className="absolute top-[40%] left-[50%] h-[300px] w-[300px] rounded-full bg-yellow-400/4 blur-[80px]" />
-      </div>
+    <section className="relative overflow-hidden bg-background pt-28 pb-16 md:pt-36 md:pb-24">
+      <div className="container relative mx-auto px-4 md:px-6 grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-center">
+        {/* ── Texto ── */}
+        <div>
+          <div className="section-label mb-6">Agência de Performance Digital · USA</div>
 
-      {/* Subtle dot grid */}
-      <div
-        className="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(circle, hsl(0 0% 100%) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
-      />
+          <h1 className="text-3xl sm:text-4xl md:text-5xl leading-[1.1]">
+            {t.hero.titleStart} {t.hero.titleHighlight}{" "}
+            <span className="text-gradient-yellow">{t.hero.titleEnd}</span>
+          </h1>
 
-      <div className="container relative mx-auto px-4 md:px-6 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        {/* ── Left column ── */}
-        <div className="space-y-8 text-center lg:text-left">
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 section-label">
-            <span className="h-1.5 w-1.5 rounded-full bg-yellow-400" />
-            Agência de Performance Digital · USA
-          </div>
-
-          {/* Headline */}
-          <div className="space-y-3">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl leading-[1.05]">
-              <span className="block text-white">
-                {t.hero.titleStart}
-              </span>
-              <span className="block text-gradient-yellow mt-1">
-                {t.hero.titleHighlight}
-              </span>
-              <span className="block text-white">
-                {t.hero.titleEnd}
-              </span>
-            </h1>
-          </div>
-
-          {/* Subtitle */}
-          <p className="text-lg text-white/55 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+          <p className="mt-6 text-base md:text-lg text-white/60 max-w-lg leading-relaxed">
             {t.hero.subtitle}
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+          <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <a
               href="#contato"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-brand-navy bg-yellow-grad shadow-yellow-soft hover:brightness-105 active:scale-[0.97] transition-transform duration-150 text-base"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-bold text-brand-navy bg-yellow-grad hover:brightness-105 active:scale-[0.97] transition-transform duration-150 text-base"
             >
               {t.hero.cta}
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="#depoimentos"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white/80 border border-white/10 hover:bg-white/5 active:scale-[0.97] transition-all duration-150 text-base"
+              className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg font-semibold text-white/80 border border-white/15 hover:bg-white/5 active:scale-[0.97] transition-all duration-150 text-base"
             >
               Ver depoimentos
             </a>
           </div>
 
-          {/* Stats strip */}
-          <div className="grid grid-cols-3 gap-3 pt-2">
-            {stats.map(({ icon: Icon, num, label }) => (
+          {/* Números simples, separados por linha */}
+          <dl className="mt-12 grid grid-cols-3 border-t border-white/10">
+            {stats.map(({ num, label }, i) => (
               <div
                 key={label}
-                className="hero-stat flex flex-col gap-1 p-4 rounded-xl border border-white/6 bg-white/[0.03]"
+                className={`hero-stat pt-5 ${i > 0 ? "pl-4 md:pl-6 border-l border-white/10" : ""}`}
               >
-                <Icon className="h-4 w-4 text-yellow-400/60 mb-1" />
-                <span className="text-2xl font-bold text-white leading-none">{num}</span>
-                <span className="text-xs text-white/45 leading-tight">{label}</span>
+                <dt className="text-2xl md:text-3xl font-bold text-white leading-none">{num}</dt>
+                <dd className="mt-2 text-xs md:text-sm text-white/50 leading-snug">{label}</dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
 
-        {/* ── Right column — Hero image ── */}
-        <div className="relative animate-float order-first lg:order-last">
-          {/* Glow halo */}
-          <div className="absolute inset-[-5%] rounded-[2rem] bg-yellow-400/10 blur-3xl" />
-
-          {/* Frame */}
-          <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden border border-white/8 shadow-[0_32px_80px_-8px_hsl(220_28%_4%/0.8)]">
+        {/* ── Imagem ── */}
+        <div className="relative order-first lg:order-last">
+          <div className="rounded-xl overflow-hidden border border-white/10">
             <img
               src="/hero-mockup.webp"
               alt="Resultados AD Company no Google e WhatsApp"
@@ -148,28 +111,9 @@ const Hero = () => {
               fetchPriority="high"
               decoding="async"
             />
-            {/* Bottom tint */}
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/60 to-transparent" />
-          </div>
-
-          {/* Floating badge */}
-          <div className="absolute -bottom-4 -left-4 lg:-left-8 bg-card-grad border border-white/10 rounded-2xl px-4 py-3 shadow-card-soft backdrop-blur-sm">
-            <div className="flex items-center gap-3">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
-              </span>
-              <div>
-                <p className="text-xs font-bold text-white leading-none">Leads ao vivo</p>
-                <p className="text-[10px] text-white/50 mt-0.5">Automação ativa</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
-
-      {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 };
